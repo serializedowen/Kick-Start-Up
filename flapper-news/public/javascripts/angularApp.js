@@ -1,4 +1,4 @@
-/*// we set up the app variable
+// we set up the app variable
 var app = angular.module('flapperNews', ['ui.router']);app.config([
 '$stateProvider',
 '$urlRouterProvider',
@@ -103,9 +103,8 @@ function($scope, posts){
 	$scope.incrementUpvotes = function(post) {
   		posts.upvote(post);
 	};
-  	$scope.test = 'Hello world!';
-  	$scope.posts = posts.posts[$stateParams.id];
-}])*/
+}])
+/*
 angular.module('flapperNews',['ui.router'])
 .config([
   '$stateProvider',
@@ -180,4 +179,4 @@ angular.module('flapperNews',['ui.router'])
       $scope.body = '';
     }
   }])
-
+*/
