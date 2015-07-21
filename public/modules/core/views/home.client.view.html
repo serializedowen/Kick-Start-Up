@@ -1,94 +1,78 @@
-<section data-ng-controller="HomeController">
-	<div class="jumbotron text-center">
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-				<img alt="MEAN.JS" class="img-responsive text-center" src="modules/core/img/brand/logo.png" />
+<section data-ng-controller="HomeController" style="background-image: url(../../core/img/brand/homepage.jpg)">
+	<div class="jumbotron">
+		<h1>Welcome to Kick-Start-Up!</h1>
+		<p>Kick-Start-Up is an online system for those start-up companies (startups) with vacant positions to find their matching applicant fast and reliable. First, startups register their information and position to look for on the website, with detailed description of responsibilities and expectations. Applicants will create profile of themselves, much like an online resume, after that, they will gain access to the system apply for the job. Startups will have the ability to review applicants’ profile and pick suitable one for them. Once they start collaborating, applicant will be joining in the internal social networking system, where they can discuss, rate, help to improve their employer.
+		</p>
+		<p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-sm-2">
+					<h1 class="pull-right">
+						<button type="button" class="btn btn-success">
+							<i class="glyphicon glyphicon-user"></i>
+						</button>
+					</h1>
+				</div>
+				<div class="col-sm-10">
+					<h1>3,421</h1>
+					<span class="text-muted">Total Applicants</span>
+				</div>
 			</div>
 		</div>
-		<br>
-		<div class="row">
-			<p class="lead">
-				Open-Source Full-Stack Solution For MEAN Applications
-			</p>
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-sm-2">
+					<h1 class="pull-right">
+						<button type="button" class="btn btn-info">
+							<i class="glyphicon glyphicon-tasks"></i>
+						</button>
+					</h1>
+				</div>
+				<div class="col-sm-10">
+					<h1>1,124</h1>
+					<span class="text-muted">Active Jobs</span>
+				</div>
+			</div>
 		</div>
-		<div class="row">
-			<p>
-				<a class="btn btn-primary btn-lg" href="http://meanjs.org" target="_blank">Learn more</a>
-			</p>
-		</div>
-	</div>
-	<div>
-		<h2>Congrats! You've configured and run the sample application.</h2>
-		<p>MEAN.JS is a web application boilerplate, which means you should start changing everything :-)</p>
-		<p>This sample application tracks users and articles.</p>
-		<ul>
-			<li>
-				Click
-				<em>Signup</em>
-				to get started.
-			</li>
-			<li>
-				Configure your app to work with your social accounts, by editing the
-				<em>/config/env/*.js</em>
-				files.
-			</li>
-			<li>
-				Edit your users module.
-			</li>
-			<li>
-				Add new CRUD modules.
-			</li>
-			<li>
-				Have fun...
-			</li>
-		</ul>
 	</div>
 	<div class="row">
-		<div class="col-md-3">
-			<h2>
-				<strong>M</strong>ongoDB
-			</h2>
-			<p><a target="_blank" href="http://mongodb.org/">MongoDB</a> is a database. MongoDB's <a target="_blank" href="http://docs.mongodb.org/manual/">great manual</a> is the place to get started with NoSQL and MongoDB.</p>
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-sm-2">
+					<h1 class="pull-right">
+						<button type="button" class="btn btn-warning">
+							<i class="glyphicon glyphicon-user"></i>
+						</button>
+					</h1>
+				</div>
+				<div class="col-sm-10">
+					<h1>3,421</h1>
+					<span class="text-muted">Total Employers</span>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-3">
-			<h2>
-				<strong>E</strong>xpress
-			</h2>
-			<p><a target="_blank" href="http://expressjs.com/"> Express</a> is an app server. Check out <a target="_blank" href="http://expressjs.com/guide.html">The Express Guide</a> or <a target="_blank" href="http://stackoverflow.com/questions/8144214/learning-express-for-node-js">StackOverflow</a> for more info.</p>
-		</div>
-		<div class="col-md-3">
-			<h2>
-				<strong>A</strong>ngularJS
-			</h2>
-			<p>AngularJS is web app framework. <a target="_blank" href="http://angularjs.org/">Angular's website</a> offers a lot. The <a target="_blank" href="http://www.thinkster.io/">Thinkster Popular Guide</a> and <a target="_blank" href="https://egghead.io/">Egghead Videos</a> are great resources.</p>
-		</div>
-		<div class="col-md-3">
-			<h2>
-				<strong>N</strong>ode.js
-			</h2>
-			<p><a target="_blank" href="http://nodejs.org/">Node.js</a> is a web server. Node's website and this <a target="_blank" href="http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js">stackOverflow thread</a> offer excellent starting points to get to grasps with node.</p>
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-sm-2">
+					<h1 class="pull-right">
+						<button type="button" class="btn btn-danger">
+							<i class="glyphicon glyphicon-ok"></i>
+						</button>
+					</h1>
+				</div>
+				<div class="col-sm-10">
+					<h1>1,124</h1>
+					<span class="text-muted">Kick-Started-Ups</span>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="well">
-		<h2>MEAN.JS Documentation</h2>
-		<p>
-			Once you're familiar with the foundation technology, check out the MEAN.JS Documentation:
-			<ul>
-				<li><a target="_blank" href="http://meanjs.org/docs.html">MEAN.JS Documentation</a>
-				</li>
-				<li><a target="_blank" href="http://meanjs.org/generator.html">Yeoman Generator</a>
-				</li>
-				<li><a target="_blank" href="http://meanjs.org/modules.html">Modules</a>
-				</li>
-				<li><a target="_blank" href="http://meanjs.org/changelog.html">Changelog</a>
-				</li>
-				<li><a target="_blank" href="http://meanjs.org/community.html">Community</a>
-				</li>
-				<li><a target="_blank" href="http://blog.meanjs.org">Blog</a>
-				</li>
-			</ul>
-		</p>
+
+	<div class="text-center">
+		<br>Enjoy &amp; Keep Us Updated,
+		<br>The Kick-Start-Up Team.
 	</div>
-	<br>Enjoy &amp; Keep Us Updated,
-	<br>The MEAN.JS Team.
 </section>
