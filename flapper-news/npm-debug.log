@@ -20,7 +20,7 @@
 11 error There is likely additional logging output above.
 12 error System Linux 3.13.0-36-generic
 13 error command "/usr/bin/node" "/usr/bin/npm" "start"
-14 error cwd /home/steven/Desktop/flapper-news
+14 error cwd /home/steven/Desktop/Kick-Start-Up/flapper-news
 15 error node -v v0.10.37
 16 error npm -v 1.4.28
 17 error code ELIFECYCLE
