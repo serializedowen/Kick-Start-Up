@@ -6,7 +6,8 @@ var jwt = require('jsonwebtoken');
 var UserSchema = new mongoose.Schema({
   username: {type: String, lowercase: true, unique: true},
   hash: String,
-  salt: String
+  salt: String,
+  bio: String
 });
 
 UserSchema.methods.validPassword = function(password) {
@@ -20,7 +21,9 @@ UserSchema.methods.setPassword = function(password){
 
   this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
 };
-
+UserSchema.methods.setBio = function(biography){
+	this.bio = biography;
+};
 UserSchema.methods.generateJWT = function() {
 
   // set expiration to 60 days

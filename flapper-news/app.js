@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 
-mongoose.connect('mongodb://localhost/news');
+mongoose.connect('mongodb://adminkick:adminkick@ds059712.mongolab.com:59712/kick-start-up');
 require('./models/Posts');
 require('./models/Comments');
 require('./models/Users');
