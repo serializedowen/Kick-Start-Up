@@ -1,6 +1,6 @@
 // we set up the app variable
 
-angular.module('flapperNews', ['ui.router'])
+angular.module('Kick-Start-Up', ['ui.router'])
 .config([
 '$stateProvider',
 '$urlRouterProvider',
@@ -46,7 +46,14 @@ function($stateProvider, $urlRouterProvider) {
           $state.go('home');
         }
       }]
-    });
+    })
+
+
+  .state('reset_password', {
+    url: '/reset_pass',
+    templateUrl: '/views/profile/reset-password.html',
+    controller: 'ProfileController'
+  });
 
   $urlRouterProvider.otherwise('home');
 }])
@@ -112,7 +119,7 @@ function($stateProvider, $urlRouterProvider) {
 
       if(token){
         var payload = JSON.parse($window.atob(token.split('.')[1]));
-        
+
         return payload.exp > Date.now() / 1000;
       } else {
         return false;
@@ -215,14 +222,48 @@ function($scope, $state, auth){
     });
   };
 }])
+
 .controller('NavCtrl', [
-'$scope',
-'auth',
+  '$scope',
+  'auth',
 function($scope, auth){
   $scope.isLoggedIn = auth.isLoggedIn;
   $scope.currentUser = auth.currentUser;
   $scope.logOut = auth.logOut;
-}]);
+}])
+
+.controller('ProfileController', [
+      '$scope',
+      '$stateParams',
+      '$http',
+      '$location',
+      'auth',
+  function($scope, $stateParams, $http, $location, auth) {
+    $scope.authentication = auth;
+
+    //If user is signed in then redirect back home
+    //if ($scope.authentication.user) $location.path('/');
+
+    // Change user profile
+    $scope.resetUserPassword = function() {
+
+      $scope.success = $scope.error = null;
+
+      $http.post('/auth/reset/' + $stateParams.token, $scope.passwordDetails).success(function(response) {
+        // If successful show success message and clear form
+        $scope.passwordDetails = null;
+
+        // Attach user profile
+        Authentication.user = response;
+
+        // And redirect to the index page
+        $location.path('/profile/reset/success');
+      }).error(function(response) {
+        $scope.error = response.message;
+      })
+    }
+  }
+])
 
 /*angular.module('flapperNews', ['ui.router'])
 .config([

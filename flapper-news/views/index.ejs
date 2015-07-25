@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 </head>
 
-<body ng-app="flapperNews">
+<body ng-app="Kick-Start-Up">
   <nav class="navbar navbar-default" ng-controller="NavCtrl">
     <a class="navbar-brand">
       Kick-Start-Up
@@ -21,15 +21,15 @@
         <a>Signed in as:</a>
       </li>
       <li class="dropdown" ng-show="isLoggedIn()">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <strong>{{+currentUser()}}</strong><span class="caret"></span>
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <strong>{{currentUser()}}</strong><span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
           <li><a href="#">Manage Profile</a></li>
           <li><a href="#">Upgrade Account!</a></li>
-          <li><a href="#">Reset Password</a></li>
+          <li><a href="/#/reset_pass">Reset Password</a></li>
           <li role="separator" class="divider"></li>
-          <li><a ng-click="logOut()">Sign Out</a></li>
+          <li><a href="#" ng-click="logOut()">Sign Out</a></li>
         </ul>
       </li>
       <li ng-hide="isLoggedIn()"><a href="/#/login">Sign In</a></li>
