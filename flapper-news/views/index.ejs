@@ -15,7 +15,6 @@
     <a class="navbar-brand">
       Kick-Start-Up
     </a>
-
     <ul class="nav navbar-nav pull-right">
       <li ng-show="isLoggedIn()">
         <a>Signed in as:</a>
@@ -27,7 +26,7 @@
         <ul class="dropdown-menu">
           <li><a href="#">Manage Profile</a></li>
           <li><a href="#">Upgrade Account!</a></li>
-          <li><a href="/#/reset_pass">Reset Password</a></li>
+          <li><a href="/#/reset_password">Reset Password</a></li>
           <li role="separator" class="divider"></li>
           <li><a href="#" ng-click="logOut()">Sign Out</a></li>
         </ul>
@@ -39,7 +38,7 @@
       </li>
     </ul>
   </nav>
-  <div>
+  <div class="container">
     <ui-view></ui-view>
   </div>
 </body>
