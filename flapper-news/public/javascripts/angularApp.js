@@ -56,9 +56,15 @@ function($stateProvider, $urlRouterProvider) {
         $state.go('home');
       }
     }]
-  });
+  })
+
+  .state('404', {
+    url: '/page_not_found',
+    templateUrl: 'views/404.server.view.html'
+  })
 
   $urlRouterProvider.otherwise('home');
+
 }])
 
 
@@ -240,16 +246,18 @@ function($scope, auth){
     'auth',
     'profile',
     function($scope, auth, profile){
-      $scope.testing = "ac";
-      console.log("abc");
       $scope.resetUserPassword = function(){
         profile.resetPassword($scope.passwordDetails).error(function (error) {
           $scope.error = error;
         }).success(function (data) {
           $scope.testing = data.newPassword;
+
+
         })
       }
 
+
+      //$scope.
     }
   ]
 )

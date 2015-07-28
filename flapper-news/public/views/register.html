@@ -21,7 +21,7 @@
                            id="pw"
                            class="form-control"
                            placeholder="Password"
-                           ng-model="user.pwd">
+                           ng-model="user.password">
                     </input>
                 </div>
 
@@ -39,12 +39,13 @@
                         <input type="radio"
                                name="inlineRadioOptions"
                                id="inlineRadio1"
-                               value="option1"> User
+                               ng-model="user.type"
+                               ng-value="user"> User
                         <input type="radio"
                                name="inlineRadioOptions"
                                id="inlineRadio2"
-                               value="option2"> Business Owner
-
+                               ng-model="user.type"
+                               ng-value="owner"> Business Owner
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
             </form>
