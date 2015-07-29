@@ -10,8 +10,8 @@ var UserSchema = new mongoose.Schema({
   bio: String,
   email: String,
   firstName: String,
-  lastName: String
-  dateJoined: {type: Date}
+  lastName: String,
+  dateJoined: {type: Date, default: new Date()}
 });
 
 UserSchema.methods.validPassword = function(password) {

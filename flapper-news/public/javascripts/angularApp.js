@@ -46,7 +46,7 @@ function($stateProvider, $urlRouterProvider) {
 		  $state.go('home');
 		}
 	  }]
-})
+  })
     .state('profile', {
       url: '/profile',
       templateUrl: '/views/profile/profile_client_view.html',
@@ -59,35 +59,9 @@ function($stateProvider, $urlRouterProvider) {
     onEnter:  ['$state', 'auth', function($state, auth){
       if(!auth.isLoggedIn()){
         $state.go('home');
-      }
-    })
-    .state('login', {
-      url: '/login',
-      templateUrl: '/views/login.html',
-      controller: 'AuthCtrl',
-      onEnter: ['$state', 'auth', function($state, auth){
-        if(auth.isLoggedIn()){
-          $state.go('home');
         }
       }]
     })
-    .state('register', {
-      url: '/register',
-      templateUrl: '/views/register.html',
-      controller: 'AuthCtrl',
-      onEnter: ['$state', 'auth', function($state, auth){
-        if(auth.isLoggedIn()){
-          $state.go('home');
-        }
-      }]
-    })
-    .state('profile', {
-      url: '/profile',
-      templateUrl: '/views/profile.html',
-      controller: 'PostCtrl'
-    });
-    }]
-  })
   .state('404', {
     url: '/page_not_found',
     templateUrl: 'views/404.server.view.html'

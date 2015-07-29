@@ -174,15 +174,11 @@ router.post('/register', function(req, res, next){
 
   var user = new User();
   user.username = req.body.username;
-<<<<<<< HEAD
 
   user.setPassword(req.body.password);
 
   user.bio = req.body.bio
 
-=======
-  user.setPassword(req.body.password);
->>>>>>> 6b5cfe9a1b239f9ea0fd388d50c0ef45d084eda1
   user.save(function (err){
     if(err){
       return next(err);
