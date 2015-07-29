@@ -48,10 +48,12 @@ function($stateProvider, $urlRouterProvider) {
 	  }]
 })
     .state('profile', {
-      url: '/profile',
+      url: '/profile/{id}',
       templateUrl: '/views/profile/profile_client_view.html',
       controller: 'ProfileController'
     })
+
+
   .state('reset_password', {
     url: '/reset_password',
     templateUrl: '/views/profile/reset-password.html',
@@ -72,10 +74,14 @@ function($stateProvider, $urlRouterProvider) {
 }])
 
 
-.factory('profile', ['$http', function($http){
+.factory('profile', ['$http', 'auth', function($http, auth){
     var p = {};
     p.resetPassword = function(user){
-      return $http.post('/reset_password', user)
+      return $http.post('/reset_password', user);
+    }
+
+    p.getProfile = function(id) {
+      return $http.get('/profile/' + id);
     }
     return p;
 }])
@@ -142,14 +148,21 @@ function($stateProvider, $urlRouterProvider) {
           return payload.exp > Date.now() / 1000;
         } else {
         return false;}},
+
+    currentUID: function (){
+      if(auth.isLoggedIn()){
+        var token = auth.getToken();
+        var payload = JSON.parse($window.atob(token.split('.')[1]));
+        return payload._id;
+      }},
+
     currentUser: function(){
       if(auth.isLoggedIn()){
       var token = auth.getToken();
       var payload = JSON.parse($window.atob(token.split('.')[1]));
-
       return payload.username;
-      }
-    },
+      }},
+
     register: function(user){
       return $http.post('/register', user).success(
         function(data){
@@ -259,7 +272,13 @@ function($scope, auth){
       }
 
 
-      //$scope.
+      $scope.getProfile = function(){
+        profile.getProfile().success(function (data){
+
+        }).error(function (error){
+
+        })
+      }
     }
   ]
 )

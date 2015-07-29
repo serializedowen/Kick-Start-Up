@@ -127,7 +127,7 @@ router.post('/login', function(req, res, next){
 });
 
 router.post('/register', function(req, res, next){
-  if(!req.body.username || !req.body.password || !req.body.verify || !req.body.type){
+  if(!req.body.username || !req.body.password || !req.body.verify || !req.body.firstname || !req.body.lastname){
     return res.status(400).json({message: 'Please fill out all fields.'});
   }
   if(req.body.password != req.body.verify){
@@ -140,6 +140,8 @@ router.post('/register', function(req, res, next){
   var user = new User();
   user.username = req.body.username;
   user.setPassword(req.body.password);
+  user.firstname = req.body.firstname;
+  user.lastname = req.body.lastname;
   user.save(function (err){
     if(err){
       return next(err);
@@ -164,5 +166,13 @@ router.post('/reset_password', function(req, res){
   return res.json({newPassword: req.body.newPassword})
 });
 
+
+router.get('/profile/:pid', auth, function(req, res){
+  var userdata = User.findById(pid);
+  var requester = req.body.payload.username;
+  var modifiable = userdata.username == requester;
+
+  return res.json({user: userdata});
+})
 
 module.exports = router;

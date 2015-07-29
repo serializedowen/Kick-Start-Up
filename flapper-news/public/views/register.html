@@ -7,13 +7,25 @@
                     <span>{{ error.message }}</span>
                 </div>
                 <div class="form-group">
+                    <label for="fullname">Your Full Name</label>
+                    <div class="form-inline" id="fullname">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="First Name"
+                               ng-model="user.firstname">
+                        <input type="text"
+                               class="form-control pull-right"
+                               placeholder="Last Name"
+                               ng-model="user.lastname">
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="uname">Your Username</label>
                     <input type="text"
                            id="uname"
                            class="form-control"
                            placeholder="Username"
                            ng-model="user.username">
-                    </input>
                 </div>
                 <div class="form-group">
                     <label for="pw">Your Password</label>
@@ -22,7 +34,6 @@
                            class="form-control"
                            placeholder="Password"
                            ng-model="user.password">
-                    </input>
                 </div>
 
                 <div class="form-group">
