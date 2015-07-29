@@ -46,11 +46,16 @@ function($stateProvider, $urlRouterProvider) {
           $state.go('home');
         }
       }]
+    })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: '/views/profile.html',
+      controller: 'PostCtrl'
     });
 
   $urlRouterProvider.otherwise('home');
 }])
-.factory('posts', ['$http', 'auth', function($http, auth){
+.factory('posts', ['$http', 'auth', '$window', function($http, auth, $window){
   var o = {
     posts: []
   };
@@ -60,7 +65,30 @@ function($stateProvider, $urlRouterProvider) {
       return res.data;
     });
   };
+  o.rightOwner = function(author){
+      var token = auth.getToken();
 
+      if(token){
+        var payload = JSON.parse($window.atob(token.split('.')[1]));
+        if(payload.username === author){
+          return true;
+        };
+      };
+      return false;
+  };
+  o.applyedAlready = function(posts1){
+     var token = auth.getToken();
+
+      if(token){
+        var payload = JSON.parse($window.atob(token.split('.')[1]));
+        for(var i = 0; i<posts1.length; i++){
+          if(payload.username === posts1[i].author){
+            return true;
+          };
+        };
+      };
+      return false;
+    };
   o.getAll = function() {
     return $http.get('/posts').success(function(data){
       angular.copy(data, o.posts);
@@ -126,6 +154,18 @@ function($stateProvider, $urlRouterProvider) {
         return payload.username;
       }
     },
+    myBio: function(){
+       if(auth.isLoggedIn()){
+        var token = auth.getToken();
+        var payload = JSON.parse($window.atob(token.split('.')[1]));
+        return payload.bio;
+      }
+    },
+    changeBio: function(body){
+      return $http.put('/profile', body).success(function(data){
+          auth.saveToken(data.token);
+      });
+    },
     register: function(user){
       return $http.post('/register', user).success(function(data){
         auth.saveToken(data.token);
@@ -147,7 +187,8 @@ function($stateProvider, $urlRouterProvider) {
 '$scope',
 'posts',
 'auth',
-function($scope, posts, auth){
+'$window',
+function($scope, posts, auth, $window){
   $scope.test = 'Hello world!';
 
   $scope.posts = posts.posts;
@@ -157,10 +198,14 @@ function($scope, posts, auth){
     if($scope.title === '') { return; }
     posts.create({
       title: $scope.title,
-      link: $scope.link,
+      body: $scope.bodyStuff,
+      dateStart: Date.now(),
+      dateEnd: $scope.dateEnd
     });
     $scope.title = '';
-    $scope.link = '';
+    $scope.bodyStuff = '';
+    $scope.dateStart = '';
+    $scope.dateEnd = '';
   };
 
   $scope.incrementUpvotes = function(post) {
@@ -168,19 +213,41 @@ function($scope, posts, auth){
   };
 
 }])
+.controller('ProfileCtrl', [
+'$scope',
+'posts',
+'auth',
+function($scope, posts, auth){
+  $scope.isLoggedIn = auth.isLoggedIn;
+  $scope.myBio = auth.myBio;
+  $scope.changeBio = function(){
+    auth.changeBio({
+      body: $scope.bio
+    });
+    $scope.bio = '';
+  }
+
+}])
 .controller('PostsCtrl', [
 '$scope',
 'posts',
 'post',
 'auth',
-function($scope, posts, post, auth){
+'$window',
+function($scope, posts, post, auth, $window){
   $scope.post = post;
   $scope.isLoggedIn = auth.isLoggedIn;
-
+  $scope.rightOwner = function(){
+    return posts.rightOwner(post.author)
+  }
+  $scope.applyedAlready = function(){
+    return posts.applyedAlready(post.comments);
+  }
   $scope.addComment = function(){
-    if($scope.body === '') { return; }
+    var token = auth.getToken();
+    var payload = JSON.parse($window.atob(token.split('.')[1]));
     posts.addComment(post._id, {
-      body: $scope.body,
+      body: String(payload._id),
       author: 'user',
     }).success(function(comment) {
       $scope.post.comments.push(comment);

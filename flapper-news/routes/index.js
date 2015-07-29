@@ -48,6 +48,17 @@ router.param('post', function(req, res, next, id) {
     return next();
   });
 });
+router.param('profile', function(req, res, next, id) {
+  var query = User.findById(id);
+
+  query.exec(function (err, user){
+    if (err) { return next(err); }
+    if (!User) { return next(new Error("can't find post")); }
+
+    req.user = user;
+    return next();
+  });
+});
 
 // Preload comment objects on routes with ':comment'
 router.param('comment', function(req, res, next, id) {
@@ -64,10 +75,17 @@ router.param('comment', function(req, res, next, id) {
 
 
 // return a post
+router.put('/profile/:profile', auth, function(req,res,next){
+  if(req.body.bio){
+    req.user.setBio(req.body.bio);
+    res.json(user);
+  }
+});
+
 router.get('/posts/:post', function(req, res, next) {
-  req.post.populate('comments', function(err, post) {
-    res.json(post);
-  });
+    req.post.populate('comments', function(err, post) {
+      res.json(post);
+    });
 });
 
 
@@ -80,7 +98,6 @@ router.put('/posts/:post/upvote', function(req, res, next) {
   });
 });
 
-
 // create a new comment
 router.post('/posts/:post/comments', auth, function(req, res, next) {
   var comment = new Comment(req.body);
@@ -91,6 +108,24 @@ router.post('/posts/:post/comments', auth, function(req, res, next) {
     if(err){ return next(err); }
 
     req.post.comments.push(comment);
+    req.post.save(function(err, post) {
+      if(err){ return next(err); }
+
+      res.json(comment);
+    });
+  });
+});
+
+router.post('/posts/:post/applicants', auth, function(req, res, next) {
+  var comment = new Comment(req.body);
+  comment.body = req.payload._id;
+  comment.post = req.post;
+  comment.author = req.payload.username;
+
+  comment.save(function(err, comment){
+    if(err){ return next(err); }
+
+    req.post.applicants.push(comment);
     req.post.save(function(err, post) {
       if(err){ return next(err); }
 
@@ -135,7 +170,9 @@ router.post('/register', function(req, res, next){
 
   user.username = req.body.username;
 
-  user.setPassword(req.body.password)
+  user.setPassword(req.body.password);
+
+  user.bio = req.body.bio
 
   user.save(function (err){
     if(err){ return next(err); }

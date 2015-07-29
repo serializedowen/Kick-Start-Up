@@ -7,7 +7,10 @@ var UserSchema = new mongoose.Schema({
   username: {type: String, lowercase: true, unique: true},
   hash: String,
   salt: String,
-  bio: String
+  bio: String,
+  email: String,
+  firstName: String,
+  lastName: String
 });
 
 UserSchema.methods.validPassword = function(password) {
@@ -33,6 +36,7 @@ UserSchema.methods.generateJWT = function() {
 
   return jwt.sign({
     _id: this._id,
+    bio: this.bio,
     username: this.username,
     exp: parseInt(exp.getTime() / 1000),
   }, 'SECRET');

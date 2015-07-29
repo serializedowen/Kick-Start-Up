@@ -1,35 +1,43 @@
 <section>
     <div class="page-header">
       <h3>
-        <a ng-show="post.link" href="{{post.link}}">
-          {{post.title}}
-        </a>
-        <span ng-hide="post.link">
+        <span>
           {{post.title}}
         </span>
       </h3>
     </div>
-
-    <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
-      <span class="glyphicon glyphicon-thumbs-up"
-        ng-click="incrementUpvotes(comment)"></span>
-      {{comment.upvotes}} - by <a>{{comment.author}}</a>
-      <span style="font-size:20px; margin-left:10px;">
-        {{comment.body}}
+    <div>
+      Description : {{post.body}}
+    </div>
+    <div>
+      Date Begin: {{post.dateStart}}
+    </div>
+    <div>
+      Date End: {{post.dateEnd}}
+    </div>
+    <div>
+      By : {{post.author}}
+    </div>
+    <span ng-show="rightOwner()">
+      <h3>Applicants</h3>
+    </span>
+    <div ng-repeat="comment in post.comments ">
+      <span style="font-size:20px; margin-left:10px;" ng-show="rightOwner()">
+        <a href="#/profile/{{comment.body}}">{{comment.author}}</a>
       </span>
     </div>
-    <form ng-submit="addComment()"
-      style="margin-top:30px;" ng-show="isLoggedIn()">
-      <h3>Add a new comment</h3>
-
-      <div class="form-group">
-        <input type="text"
-        class="form-control"
-        placeholder="Comment"
-        ng-model="body"></input>
-      </div>
-      <button type="submit" class="btn btn-primary">Post</button>
-    </form>
+    <span ng-show="isLoggedIn()">
+      <span ng-hide="rightOwner()">
+        <form ng-submit="addComment()"
+          style="margin-top:30px;" ng-hide="applyedAlready()">
+          <h3>Apply for job</h3>
+          <button type="submit" class="btn btn-primary">Post</button>
+        </form>
+      </span>
+    </span>
+    <div ng-show="applyedAlready()">
+      <h3>You have already Applyed for this position</h3>
+    </div>
 
     <div ng-hide="isLoggedIn()">
       <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can comment.</h3>
