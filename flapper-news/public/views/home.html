@@ -10,18 +10,12 @@
         ng-click="incrementUpvotes(post)"></span>
       {{post.upvotes}}
       <span style="font-size:20px; margin-left:10px;">
-        <a ng-show="post.link" href="{{post.link}}">
-          {{post.title}}
-        </a>
-        <span ng-hide="post.link">
-          {{post.title}}
+        <span>
+          <a href="#/posts/{{post._id}}">{{post.title}}</a>
         </span>
       </span>
       <span ng-show="post.author">
         posted by {{post.author}} |
-      </span>
-      <span>
-        <a href="#/posts/{{post._id}}">Comments</a>
       </span>
     </div>
 
@@ -38,8 +32,14 @@
       <div class="form-group">
         <input type="text"
         class="form-control"
-        placeholder="Link"
-        ng-model="link"></input>
+        placeholder="BodyStuff"
+        ng-model="bodyStuff"></input>
+      </div>
+       <div class="form-group">
+        <input type="text"
+        class="form-control"
+        placeholder="DateEnd"
+        ng-model="dateEnd"></input>
       </div>
       <button type="submit" class="btn btn-primary">Post</button>
     </form>
