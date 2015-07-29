@@ -47,6 +47,11 @@ function($stateProvider, $urlRouterProvider) {
 		}
 	  }]
 })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: '/views/profile/profile_client_view.html',
+      controller: 'ProfileController'
+    })
   .state('reset_password', {
     url: '/reset_password',
     templateUrl: '/views/profile/reset-password.html',
@@ -57,7 +62,6 @@ function($stateProvider, $urlRouterProvider) {
       }
     }]
   })
-
   .state('404', {
     url: '/page_not_found',
     templateUrl: 'views/404.server.view.html'
@@ -251,8 +255,6 @@ function($scope, auth){
           $scope.error = error;
         }).success(function (data) {
           $scope.testing = data.newPassword;
-
-
         })
       }
 

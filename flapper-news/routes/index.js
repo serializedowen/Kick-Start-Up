@@ -160,8 +160,7 @@ router.post('/reset_password', function(req, res){
   }
 
 
-  var user = new User();
-  user.find({})
+  //change this to update to database
   return res.json({newPassword: req.body.newPassword})
 });
 
