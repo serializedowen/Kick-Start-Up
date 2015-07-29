@@ -11,11 +11,11 @@ var UserSchema = new mongoose.Schema({
   email: String,
   firstName: String,
   lastName: String
+  dateJoined: {type: Date}
 });
 
 UserSchema.methods.validPassword = function(password) {
   var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
-
   return this.hash === hash;
 };
 

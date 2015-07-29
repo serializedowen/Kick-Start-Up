@@ -1,34 +1,55 @@
- <html>
-    <div class="page-header">
-      <h1>Flapper News</h1>
+ <section>
+    <div class="row">
+        <div class="col-xs-offset-2 col-xs-8 col-md-offset-3 col-md-6">
+            <form ng-submit="register()" autocomplete="off">
+                <h3 class="text-center">Register</h3>
+                <div ng-show="error" class="alert alert-danger row">
+                    <span>{{ error.message }}</span>
+                </div>
+                <div class="form-group">
+                    <label for="uname">Your Username</label>
+                    <input type="text"
+                           id="uname"
+                           class="form-control"
+                           placeholder="Username"
+                           ng-model="user.username">
+                    </input>
+                </div>
+                <div class="form-group">
+                    <label for="pw">Your Password</label>
+                    <input type="password"
+                           id="pw"
+                           class="form-control"
+                           placeholder="Password"
+                           ng-model="user.password">
+                    </input>
+                </div>
+
+                <div class="form-group">
+                    <input type="password"
+                           class="form-control"
+                           placeholder="Repeat Your Password"
+                           ng-model="user.verify">
+                    </input>
+                </div>
+
+                <div class="form-group">
+                    <label for="inlineRadio1">Select Your User Type</label>
+                        <br>
+                        <input type="radio"
+                               name="inlineRadioOptions"
+                               id="inlineRadio1"
+                               ng-model="user.type"
+                               ng-value="user"> User
+                        <input type="radio"
+                               name="inlineRadioOptions"
+                               id="inlineRadio2"
+                               ng-model="user.type"
+                               ng-value="owner"> Business Owner
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            </form>
+        </div>
     </div>
 
-    <div ng-show="error" class="alert alert-danger row">
-      <span>{{ error.message }}</span>
-    </div>
-
-    <form ng-submit="register()"
-      style="margin-top:30px;">
-      <h3>Register</h3>
-
-      <div class="form-group">
-        <input type="text"
-        class="form-control"
-        placeholder="Username"
-        ng-model="user.username"></input>
-      </div>
-      <div class="form-group">
-        <input type="password"
-        class="form-control"
-        placeholder="Password"
-        ng-model="user.password"></input>
-      </div>
-      <div class="form-group">
-        <input type="text"
-        class="form-control"
-        placeholder="Bio"
-        ng-model="user.bio"></input>
-      </div>
-      <button type="submit" class="btn btn-primary">Register</button>
-    </form>
-  </html>
+ </section>
