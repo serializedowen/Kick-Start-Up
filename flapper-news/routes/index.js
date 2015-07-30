@@ -12,6 +12,7 @@ router.get('/', function(req, res) {
 var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
+var Profile = mongoose.model('Profile');
 var User = mongoose.model('User');
 
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
@@ -48,17 +49,6 @@ router.param('post', function(req, res, next, id) {
     return next();
   });
 });
-router.param('profile', function(req, res, next, id) {
-  var query = User.findById(id);
-
-  query.exec(function (err, user){
-    if (err) { return next(err); }
-    if (!User) { return next(new Error("can't find post")); }
-
-    req.user = user;
-    return next();
-  });
-});
 
 // Preload comment objects on routes with ':comment'
 router.param('comment', function(req, res, next, id) {
@@ -73,13 +63,37 @@ router.param('comment', function(req, res, next, id) {
   });
 });
 
+router.param('profile', function(req, res, next, id) {
+  console.log(id);
+  var query = Profile.findOne({username:id} , function(err,obj) { console.log("hi"); });
+  query.exec(function (err, profile){
+    if (err) { return next(err); }
+    if (!profile) { return next(new Error("can't find comment")); }
+
+    req.profile = profile;
+    console.log(profile);
+    return next();
+  });
+});
+
 
 // return a post
-router.put('/profile/:profile', auth, function(req,res,next){
-  if(req.body.bio){
-    req.user.setBio(req.body.bio);
-    res.json(user);
-  }
+router.get('/profile/:profile', function(req,res,next){
+    console.log(req.profile);
+    return res.json(req.profile);
+});
+
+router.post('/profile', auth, function(req, res, next) {
+  var profile = new Profile(req.body);
+  profile.firstname = 'steven';
+  profile.lastname = 'diao';
+  profile.id = '111111';
+
+  profile.save(function(err, profile){
+    if(err){ return next(err); }
+
+    res.json(profile);
+  });
 });
 
 router.get('/posts/:post', function(req, res, next) {
@@ -206,14 +220,5 @@ router.post('/reset_password', function(req, res){
   //change this to update to database
   return res.json({newPassword: req.body.newPassword})
 });
-
-
-router.get('/profile/:pid', auth, function(req, res){
-  var userdata = User.findById(pid);
-  var requester = req.body.payload.username;
-  var modifiable = userdata.username == requester;
-
-  return res.json({user: userdata});
-})
 
 module.exports = router;

@@ -23,7 +23,7 @@
     </span>
     <div ng-repeat="comment in post.comments ">
       <span style="font-size:20px; margin-left:10px;" ng-show="rightOwner()">
-        <a href="#/profile/{{comment.body}}">{{comment.author}}</a>
+        <a href="#/profile/{{comment.author}}">{{comment.author}}</a>
       </span>
     </div>
     <span ng-show="isLoggedIn()">

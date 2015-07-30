@@ -53,9 +53,14 @@ function($stateProvider, $urlRouterProvider) {
 	  }]
   })
     .state('profile', {
-      url: '/profile',
-      templateUrl: '/views/profile/profile_client_view.html',
-      controller: 'ProfileController'
+      url: '/profile/{id}',
+      templateUrl: '/views/profile/profileSteven.html',
+      controller: 'ProfileCtrl',
+      resolve: {
+      profiles: ['$stateParams', 'profile', function($stateParams, profile) {
+      return profile.get($stateParams.id);
+      }]
+    }
     })
   .state('reset_password', {
     url: '/reset_password',
@@ -75,10 +80,22 @@ function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('home');
 
 }])
-.factory('profile', ['$http', function($http){
+.factory('profile', ['$http', 'auth', function($http, auth){
     var p = {};
-    p.resetPassword = function(user){
-      return $http.post('/reset_password', user)
+    p.get = function(id){
+      return $http.get('/profile/' + id).then(function(res){
+        return res.data;
+      });
+    };
+    p.create = function(profile){
+    return $http.post('/profile', profile, {
+      headers: {Authorization: 'Bearer '+auth.getToken()}
+      })
+
+    };
+
+    p.changeBio = function(bio){
+      return $http.post('/profile', user)
     }
     return p;
 }])
@@ -208,7 +225,6 @@ function($stateProvider, $urlRouterProvider) {
 '$window',
 '$state',
 function($scope, posts, auth, $window, $state){
-  $scope.test = 'Hello world!';
 
   $scope.posts = posts.posts;
   $scope.isLoggedIn = auth.isLoggedIn;
@@ -238,16 +254,11 @@ function($scope, posts, auth, $window, $state){
 '$scope',
 'posts',
 'auth',
-function($scope, posts, auth){
+'profiles',
+function($scope, posts, auth, profiles){
   $scope.isLoggedIn = auth.isLoggedIn;
-  $scope.myBio = auth.myBio;
-  $scope.changeBio = function(){
-    auth.changeBio({
-      body: $scope.bio
-    });
-    $scope.bio = '';
-  }
-
+  $scope.profile = profiles[0];
+  console.log("hi");
 }])
 .controller('PostsCtrl', [
 '$scope',
@@ -284,13 +295,16 @@ function($scope, posts, post, auth, $window){
 '$scope',
 '$state',
 'auth',
-function($scope, $state, auth){
+'profile',
+function($scope, $state, auth, profile){
   $scope.user = {};
   $scope.register = function(){
 	auth.register($scope.user).error(function(error){
 	  $scope.error = error;
 	}).then(function(){
-	  $state.go('home');
+    profile.create({username: $scope.user.username}).then(function(){
+      $state.go('home');
+    });
 	});
   };
 
