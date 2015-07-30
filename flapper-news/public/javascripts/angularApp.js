@@ -17,6 +17,11 @@ function($stateProvider, $urlRouterProvider) {
 		}]
 	  }
 	})
+  .state('makingPosts', {
+    url: '/posts/makingPost',
+    templateUrl: '/views/makingPost.html',
+    controller: 'MainCtrl'
+  })
 	.state('posts', {
 	  url: '/posts/{id}',
 	  templateUrl: '/views/posts.html',
@@ -48,12 +53,10 @@ function($stateProvider, $urlRouterProvider) {
 	  }]
   })
     .state('profile', {
-      url: '/profile/{id}',
+      url: '/profile',
       templateUrl: '/views/profile/profile_client_view.html',
       controller: 'ProfileController'
     })
-
-
   .state('reset_password', {
     url: '/reset_password',
     templateUrl: '/views/profile/reset-password.html',
@@ -72,16 +75,10 @@ function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('home');
 
 }])
-
-.factory('profile', ['$http', 'auth', function($http, auth){
-
+.factory('profile', ['$http', function($http){
     var p = {};
     p.resetPassword = function(user){
-      return $http.post('/reset_password', user);
-    }
-
-    p.getProfile = function(id) {
-      return $http.get('/profile/' + id);
+      return $http.post('/reset_password', user)
     }
     return p;
 }])
@@ -171,18 +168,11 @@ function($stateProvider, $urlRouterProvider) {
           return payload.exp > Date.now() / 1000;
         } else {
         return false;}},
-
-    currentUID: function (){
-      if(auth.isLoggedIn()){
-        var token = auth.getToken();
-        var payload = JSON.parse($window.atob(token.split('.')[1]));
-        return payload._id;
-      }},
-
     currentUser: function(){
       if(auth.isLoggedIn()){
       var token = auth.getToken();
       var payload = JSON.parse($window.atob(token.split('.')[1]));
+
       return payload.username;
       }
     },
@@ -216,7 +206,8 @@ function($stateProvider, $urlRouterProvider) {
 'posts',
 'auth',
 '$window',
-function($scope, posts, auth, $window){
+'$state',
+function($scope, posts, auth, $window, $state){
   $scope.test = 'Hello world!';
 
   $scope.posts = posts.posts;
@@ -229,6 +220,8 @@ function($scope, posts, auth, $window){
       body: $scope.bodyStuff,
       dateStart: Date.now(),
       dateEnd: $scope.dateEnd
+    }).then(function(post){
+      $state.go('home');
     });
     $scope.title = '';
     $scope.bodyStuff = '';
@@ -334,13 +327,7 @@ function($scope, auth){
       }
 
 
-      $scope.getProfile = function(){
-        profile.getProfile().success(function (data){
-
-        }).error(function (error){
-
-        })
-      }
+      //$scope.
     }
   ]
 )

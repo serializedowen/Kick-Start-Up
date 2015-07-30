@@ -1,0 +1,26 @@
+<section>
+<form ng-submit="addPost()"
+      style="margin-top:30px;" ng-show="isLoggedIn()">
+      <h3>Add a new post</h3>
+
+      <div class="form-group">
+        <input type="text"
+        class="form-control"
+        placeholder="Title"
+        ng-model="title"></input>
+      </div>
+      <div class="form-group">
+        <input type="text"
+        class="form-control"
+        placeholder="BodyStuff"
+        ng-model="bodyStuff"></input>
+      </div>
+       <div class="form-group">
+        <input type="text"
+        class="form-control"
+        placeholder="DateEnd"
+        ng-model="dateEnd"></input>
+      </div>
+        <button type="submit" class="btn btn-primary">Post</button>
+    </form>
+</section>
