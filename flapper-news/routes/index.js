@@ -174,12 +174,10 @@ router.post('/register', function(req, res, next){
 
   var user = new User();
   user.username = req.body.username;
-
   user.setPassword(req.body.password);
-
   user.firstname = req.body.firstname;
   user.lastname = req.body.lastname;
-  user.bio = req.body.bio
+  user.bio = req.body.bio;
   user.save(function (err){
     if(err){
       return next(err);
@@ -209,6 +207,10 @@ router.get('/profile/:pid', auth, function(req, res){
   var userdata = User.findById(pid);
   var requester = req.body.payload.username;
   var modifiable = userdata.username == requester;
+
+  if (!userdata){
+    return res.state(400).json({message: 'User does not exist.'});
+  }
 
   return res.json({user: userdata});
 })

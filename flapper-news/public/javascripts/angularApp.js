@@ -22,9 +22,9 @@ function($stateProvider, $urlRouterProvider) {
 	  templateUrl: '/views/posts.html',
 	  controller: 'PostsCtrl',
 	  resolve: {
-		post: ['$stateParams', 'posts', function($stateParams, posts) {
-		  return posts.get($stateParams.id);
-		}]
+      post: ['$stateParams', 'posts', function($stateParams, posts) {
+        return posts.get($stateParams.id);
+      }]
 	  }
 	})
 	.state('login', {
@@ -50,7 +50,7 @@ function($stateProvider, $urlRouterProvider) {
     .state('profile', {
       url: '/profile/{id}',
       templateUrl: '/views/profile/profile_client_view.html',
-      controller: 'ProfileController'
+      controller: 'ProfileController',
     })
 
 
@@ -64,12 +64,14 @@ function($stateProvider, $urlRouterProvider) {
         }
       }]
     })
+
+
   .state('404', {
     url: '/page_not_found',
     templateUrl: 'views/404.server.view.html'
   })
 
-  $urlRouterProvider.otherwise('home');
+  $urlRouterProvider.otherwise('page_not_found');
 
 }])
 
@@ -176,6 +178,7 @@ function($stateProvider, $urlRouterProvider) {
       if(auth.isLoggedIn()){
         var token = auth.getToken();
         var payload = JSON.parse($window.atob(token.split('.')[1]));
+        console.log(payload._id);
         return payload._id;
       }},
 
@@ -317,14 +320,17 @@ function($scope, auth){
   $scope.isLoggedIn = auth.isLoggedIn;
   $scope.currentUser = auth.currentUser;
   $scope.logOut = auth.logOut;
+  $scope.currentUID = auth.currentUID;
 }])
 
 
 .controller('ProfileController', [
     '$scope',
+    '$state',
+    '$stateParams',
     'auth',
     'profile',
-    function($scope, auth, profile){
+    function($scope, $state, $stateParams, auth, profile){
       $scope.resetUserPassword = function(){
         profile.resetPassword($scope.passwordDetails).error(function (error) {
           $scope.error = error;
@@ -333,12 +339,11 @@ function($scope, auth){
         })
       }
 
-
       $scope.getProfile = function(){
-        profile.getProfile().success(function (data){
-
+        profile.getProfile($stateParams.id).success(function (data){
+          $scope.username = data.user.username;
         }).error(function (error){
-
+          $state.go('page_not_found');
         })
       }
     }

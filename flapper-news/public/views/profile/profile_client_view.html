@@ -1,4 +1,4 @@
-<section>
+<section ng-init="getProfile()">
     <div id="user_header" class="row" style="width: 820px; height: 150px">
 
       <div id="user" style="width: 750px; height: 150px; float: left;">
@@ -14,6 +14,7 @@
         <div id="user_info" style="width: 820px; height: 140px; background-color: rgba(60, 60, 60, 0.4); padding-top: 10px;">
           <h2 class="user_name" style="font-family: 'Open Sans', sans-serif; font-weight: 400; margin: 0; color: #fff; letter-spacing: 1.75px;">
             Deryk Chen
+              {{user.username}}
           </h2>
 
           <ul style="margin:-5 auto; padding:0px; width:140px; float: right;">
