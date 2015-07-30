@@ -62,6 +62,12 @@ function($stateProvider, $urlRouterProvider) {
       }]
     }
     })
+    .state('contact', {
+      url: '/contact',
+      templateUrl: '/views/profile/contact.html',
+      controller: 'ProfileController'
+    })
+
   .state('reset_password', {
     url: '/reset_password',
     templateUrl: '/views/profile/reset-password.html',
