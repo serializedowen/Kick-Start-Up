@@ -31,7 +31,7 @@
           <strong>{{currentUser()}}</strong><span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="/#/profile/{{currentUID()}}">Manage Profile</a></li>
+          <li><a href="/#/profile/{{currentUser()}}">Manage Profile</a></li>
           <li><a href="#">Upgrade Account!</a></li>
           <li><a href="/#/reset_password">Reset Password</a></li>
           <li role="separator" class="divider"></li>
@@ -48,5 +48,44 @@
   <div class="container">
     <ui-view></ui-view>
   </div>
+
+
+  <!-- page footer begin -->
+  <div id="footer" class="footer" style="font:12pt Georgia;color:#f2f2f2;margin-top:60px;margin-bottom:-150px;clear:both;">
+    <div class="sloganWrap" style="position:relative; background:#0B86C3; box-shadow:2px 2px 3px rgba(0,0,0,0.5);">
+      <div id="slogan" style="text-align:center;margin:auto;width:500px;letter-space:2px;text-shadow:1px 1px 3px rgba(0,0,0,0.5);line-height:36px;font-size:46px">
+        Join us and start your projects here
+      </div>
+    </div>
+    <div class="lookWrap" style="postion:relative;align:center;width:100%;">
+      <div id="look" style="margin:auto;width:700px;">
+
+        <div class="section" style="overflow:hidden;float:left;display:inline;width:180px;margin:0  15px 15px 0;font:10px verdana;line-height:1.6em;text-align:center;">
+          <h3 style="font-weight:normal;font-size:12pt Georgia;text-transform:uppercase;color:#ABABAB;">About Us</h3>
+          <a href='#' style="color:#BEBEBE;text-decoration:none;dispaly:block;">About Website<br></a>
+          <a href='#' style="color:#BEBEBE;text-decoration:none;dispaly:block;">Our Team<br></a>
+        </div>
+
+        <div class="section" style="overflow:hidden;float:left;display:inline;width:180px;margin:0  15px 15px 0;font:10px verdana;line-height:1.6em;text-align:center;">
+          <h3 style="font-weight:normal;font-size:12pt Georgia;text-transform:uppercase;color:#ABABAB;">Support</h3>
+          <a href='/#/contact' style="color:#BEBEBE;text-decoration:none;dispaly:block;">Contact Us<br></a>
+          <a href='#' style="color:#BEBEBE;text-decoration:none;dispaly:block;">Privacy Policy<br></a>
+          <a href='/#/dproject' style="color:#BEBEBE;text-decoration:none;dispaly:block;">Term of Use</a>
+        </div>
+
+        <div class="section" style="overflow:hidden;float:left;display:inline;width:180px;margin:0  15px 15px 0;font:10px verdana;line-height:1.6em;text-align:center;">
+          <h3 style="font-weight:normal;font-size:12pt Georgia;text-transform:uppercase;color:#ABABAB;">Follow Us</h3>
+          <a href="https://www.facebook.com/" style="color:#BEBEBE;text-decoration:none;dispaly:block;"><img src="/views/image/facebook_footer.png" style="width:15px;height:15px;"></img>&nbsp;Facebook<br></a>
+          <a href="https://www.twitter.com/" style="color:#BEBEBE;text-decoration:none;dispaly:block;"><img src="/views/image/twitter_footer.png" style="width:15px;height:15px;"></img>&nbsp;Twitter<br></a>
+          <a href="https://plus.google.com/" style="color:#BEBEBE;text-decoration:none;dispaly:block;"><img src="/views/image/google_footer.gif" style="width:15px;height:15px;"></img>&nbsp;Google<br></a>
+          <a href="https://www.linkedin.com/" style="color:#BEBEBE;text-decoration:none;dispaly:block;"><img src="/views/image/linkedin_footer.png" style="width:15px;height:15px;"></img>&nbsp;Linkedin<br></a>
+        </div>
+      </div>
+    </div>
+    <div class="legality" style="margin:auto;width:700px;text-align:center;clear:both;font:10px verdana;line-height:2em;padding:40px 0 0 0;color:#ABABAB;">
+      &copy;Copyright 2015 &nbsp; Kick-Start-Up Team. All rights reserved.
+    </div>
+  </div>
+  <!-- page footer end -->
 </body>
 </html>

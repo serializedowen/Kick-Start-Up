@@ -17,6 +17,11 @@ function($stateProvider, $urlRouterProvider) {
 		}]
 	  }
 	})
+  .state('makingPosts', {
+    url: '/posts/makingPost',
+    templateUrl: '/views/makingPost.html',
+    controller: 'MainCtrl'
+  })
 	.state('posts', {
 	  url: '/posts/{id}',
 	  templateUrl: '/views/posts.html',
@@ -49,10 +54,27 @@ function($stateProvider, $urlRouterProvider) {
   })
     .state('profile', {
       url: '/profile/{id}',
-      templateUrl: '/views/profile/profile_client_view.html',
-      controller: 'ProfileController',
+      templateUrl: '/views/profile/profileSteven.html',
+      controller: 'ProfileCtrl',
+      resolve: {
+      profiles: ['$stateParams', 'profile', function($stateParams, profile) {
+      return profile.get($stateParams.id);
+      }]
+    }
+    })
+    .state('contact', {
+      url: '/contact',
+      templateUrl: '/views/profile/contact.html',
+      controller: 'ProfileController'
     })
 
+
+    //Deryk project page temporary
+    .state('dproject', {
+      url: '/dproject',
+      templateUrl: '/views/profile/Deryk_project_page.html',
+      controller: 'ProfileController'
+    })
 
   .state('reset_password', {
     url: '/reset_password',
@@ -80,16 +102,22 @@ function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('page_not_found');
 
 }])
-
 .factory('profile', ['$http', 'auth', function($http, auth){
-
     var p = {};
-    p.resetPassword = function(user){
-      return $http.post('/reset_password', user);
-    }
+    p.get = function(id){
+      return $http.get('/profile/' + id).then(function(res){
+        return res.data;
+      });
+    };
+    p.create = function(profile){
+    return $http.post('/profile', profile, {
+      headers: {Authorization: 'Bearer '+auth.getToken()}
+      })
 
-    p.getProfile = function(id) {
-      return $http.get('/profile/' + id);
+    };
+
+    p.changeBio = function(bio){
+      return $http.post('/profile', user)
     }
     return p;
 }])
@@ -179,7 +207,6 @@ function($stateProvider, $urlRouterProvider) {
           return payload.exp > Date.now() / 1000;
         } else {
         return false;}},
-
     currentUID: function (){
       if(auth.isLoggedIn()){
         var token = auth.getToken();
@@ -192,6 +219,7 @@ function($stateProvider, $urlRouterProvider) {
       if(auth.isLoggedIn()){
       var token = auth.getToken();
       var payload = JSON.parse($window.atob(token.split('.')[1]));
+
       return payload.username;
       }
     },
@@ -225,8 +253,8 @@ function($stateProvider, $urlRouterProvider) {
 'posts',
 'auth',
 '$window',
-function($scope, posts, auth, $window){
-  $scope.test = 'Hello world!';
+'$state',
+function($scope, posts, auth, $window, $state){
 
   $scope.posts = posts.posts;
   $scope.isLoggedIn = auth.isLoggedIn;
@@ -238,6 +266,8 @@ function($scope, posts, auth, $window){
       body: $scope.bodyStuff,
       dateStart: Date.now(),
       dateEnd: $scope.dateEnd
+    }).then(function(post){
+      $state.go('home');
     });
     $scope.title = '';
     $scope.bodyStuff = '';
@@ -254,16 +284,11 @@ function($scope, posts, auth, $window){
 '$scope',
 'posts',
 'auth',
-function($scope, posts, auth){
+'profiles',
+function($scope, posts, auth, profiles){
   $scope.isLoggedIn = auth.isLoggedIn;
-  $scope.myBio = auth.myBio;
-  $scope.changeBio = function(){
-    auth.changeBio({
-      body: $scope.bio
-    });
-    $scope.bio = '';
-  }
-
+  $scope.profile = profiles[0];
+  console.log("hi");
 }])
 .controller('PostsCtrl', [
 '$scope',
@@ -300,13 +325,16 @@ function($scope, posts, post, auth, $window){
 '$scope',
 '$state',
 'auth',
-function($scope, $state, auth){
+'profile',
+function($scope, $state, auth, profile){
   $scope.user = {};
   $scope.register = function(){
 	auth.register($scope.user).error(function(error){
 	  $scope.error = error;
 	}).then(function(){
-	  $state.go('home');
+    profile.create({username: $scope.user.username}).then(function(){
+      $state.go('home');
+    });
 	});
   };
 
@@ -350,7 +378,6 @@ function($scope, auth, $state){
           $scope.testing = data.newPassword;
         })
       }
-
       $scope.getProfile = function(){
         profile.getProfile($stateParams.id).success(function (data){
           $scope.username = data.user.username;
@@ -358,6 +385,7 @@ function($scope, auth, $state){
           $state.go('page_not_found');
         })
       }
+
     }
   ]
 )

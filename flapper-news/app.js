@@ -11,6 +11,7 @@ mongoose.connect('mongodb://adminkick:adminkick@ds059712.mongolab.com:59712/kick
 require('./models/Posts');
 require('./models/Comments');
 require('./models/Users');
+require('./models/Profile')
 require('./config/passport');
 var routes = require('./routes/index');
 var users = require('./routes/users');

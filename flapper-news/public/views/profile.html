@@ -1,0 +1,18 @@
+<section>
+
+	<div class="page-header">
+      <span>{{ myBio() }}</span>
+    </div>
+    <form ng-submit="changeBio()"
+      style="margin-top:30px;" ng-show="isLoggedIn()">
+      <h3>change bio</h3>
+
+      <div class="form-group">
+        <input type="text"
+        class="form-control"
+        placeholder="Bio"
+        ng-model="user.bio"></input>
+      </div>
+      <button type="submit" class="btn btn-primary">Post</button>
+    </form>
+</section>
