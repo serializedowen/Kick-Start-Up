@@ -14,6 +14,14 @@
     <a class="navbar-brand">
       Kick-Start-Up
     </a>
+
+    <form class="navbar-form navbar-left" ng-submit="search()" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search" ng-model="keyword">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
     <ul class="nav navbar-nav pull-right">
       <li ng-show="isLoggedIn()">
         <a>Signed in as:</a>

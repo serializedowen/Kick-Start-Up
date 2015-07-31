@@ -65,6 +65,12 @@ function($stateProvider, $urlRouterProvider) {
       }]
     })
 
+    .state('search', {
+      url: '/search/{kword}',
+      templateUrl: '/views/search.html',
+      controller: 'SearchController',
+      onEnter: console.log("seart")
+    })
 
   .state('404', {
     url: '/page_not_found',
@@ -316,11 +322,17 @@ function($scope, $state, auth){
 .controller('NavCtrl', [
   '$scope',
   'auth',
-function($scope, auth){
+  '$state',
+function($scope, auth, $state){
   $scope.isLoggedIn = auth.isLoggedIn;
   $scope.currentUser = auth.currentUser;
   $scope.logOut = auth.logOut;
   $scope.currentUID = auth.currentUID;
+  $scope.search = function(){
+    if ($scope.keyword){
+      $state.go('search', {kword: $scope.keyword})
+    }
+  }
 }])
 
 
@@ -349,3 +361,18 @@ function($scope, auth){
     }
   ]
 )
+
+.controller('SearchController', [
+    '$scope',
+    '$stateParams',
+    'posts',
+    function($scope, $stateParams, posts){
+      $scope.keyword = $stateParams.kword;
+      posts.getAll();
+      $scope.result = posts.posts;
+      $scope.postFilter = function(post){
+        //return post.author === $scope.keyword || post.title === $scope.keyword;
+        return post.author.indexOf($scope.keyword) > -1 || post.title.indexOf($scope.keyword) > -1
+      }
+    }
+  ])
