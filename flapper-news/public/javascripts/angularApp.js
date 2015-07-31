@@ -68,6 +68,14 @@ function($stateProvider, $urlRouterProvider) {
       controller: 'ProfileController'
     })
 
+
+    //Deryk project page temporary
+    .state('dproject', {
+      url: '/dproject',
+      templateUrl: '/views/profile/Deryk_project_page.html',
+      controller: 'ProfileController'
+    })
+
   .state('reset_password', {
     url: '/reset_password',
     templateUrl: '/views/profile/reset-password.html',
