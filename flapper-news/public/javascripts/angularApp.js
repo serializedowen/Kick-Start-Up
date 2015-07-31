@@ -62,12 +62,6 @@ function($stateProvider, $urlRouterProvider) {
       }]
     }
     })
-    .state('contact', {
-      url: '/contact',
-      templateUrl: '/views/profile/contact.html',
-      controller: 'ProfileController'
-    })
-
   .state('reset_password', {
     url: '/reset_password',
     templateUrl: '/views/profile/reset-password.html',
@@ -100,9 +94,25 @@ function($stateProvider, $urlRouterProvider) {
 
     };
 
-    p.changeBio = function(bio){
-      return $http.post('/profile', user)
-    }
+    p.changeBio = function(profile, bio){
+      return $http.put('/profile/'+auth.currentUser()+'/changeBio', bio, {
+        headers: {Authorization: 'Bearer '+auth.getToken()}
+          });
+    };
+    p.changeFirstname = function(profile, bio){
+      return $http.put('/profile/'+auth.currentUser()+'/changefirstname', bio,  {
+    headers: {Authorization: 'Bearer '+auth.getToken()}
+  }).success(function(data){
+        profile.changeFirstname(bio);
+      });
+    };
+    p.changeLastname = function(profile, bio){
+      return $http.put('/profile/'+auth.currentUser()+'/changelastname', bio, {
+    headers: {Authorization: 'Bearer '+auth.getToken()}
+  }).success(function(data){
+        profile.changeLastname(bio);
+      });
+    };
     return p;
 }])
 
@@ -261,10 +271,19 @@ function($scope, posts, auth, $window, $state){
 'posts',
 'auth',
 'profiles',
-function($scope, posts, auth, profiles){
+'profile',
+function($scope, posts, auth, profiles, profile){
   $scope.isLoggedIn = auth.isLoggedIn;
   $scope.profile = profiles[0];
-  console.log("hi");
+  $scope.changeBio = function(){
+    profile.changeBio($scope.profile,$scope.bio);
+  };
+  $scope.changeFirstname = function(){
+    profile.changeBio($scope.profile,$scope.firstname);
+  };
+  $scope.changeLastname = function(){
+    profile.changeBio($scope.profile,$scope.lastname);
+  };
 }])
 .controller('PostsCtrl', [
 '$scope',
@@ -308,7 +327,12 @@ function($scope, $state, auth, profile){
 	auth.register($scope.user).error(function(error){
 	  $scope.error = error;
 	}).then(function(){
-    profile.create({username: $scope.user.username}).then(function(){
+    profile.create({
+      username: $scope.user.username,
+      firstname: $scope.user.firstname,
+      lastname: $scope.user.lastname,
+      bio: $scope.bio
+    }).then(function(){
       $state.go('home');
     });
 	});

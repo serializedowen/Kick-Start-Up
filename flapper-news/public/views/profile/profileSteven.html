@@ -10,6 +10,48 @@
         <span>
           {{profile.username}}
         </span>
+        <span>
+          {{profile.bio}}
+        </span>
      </h3>
     </div>
+    
+    <form ng-submit="changeBio()"
+      style="margin-top:30px;" ng-show="isLoggedIn()">
+      <h3>Change Bio</h3>
+
+      <div class="form-group">
+        <input type="text"
+        class="form-control"
+        placeholder="bio"
+        ng-model="bio"></input>
+      </div>
+        <button type="submit" class="btn btn-primary">Post</button>
+    </form>
+
+    <form ng-submit="changeFirstname()"
+      style="margin-top:30px;" ng-show="isLoggedIn()">
+      <h3>change Firstname</h3>
+
+      <div class="form-group">
+        <input type="text"
+        class="form-control"
+        placeholder="Firstname"
+        ng-model="firstname"></input>
+      </div>
+        <button type="submit" class="btn btn-primary">Post</button>
+    </form>
+
+    <form ng-submit="changeLastname()"
+      style="margin-top:30px;" ng-show="isLoggedIn()">
+      <h3>change Lastname</h3>
+
+      <div class="form-group">
+        <input type="text"
+        class="form-control"
+        placeholder="Lastname"
+        ng-model="lastname"></input>
+      </div>
+        <button type="submit" class="btn btn-primary">Post</button>
+    </form>
   </section>
