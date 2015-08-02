@@ -15,10 +15,10 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
     state('search', {
         url: '/search/{keyword}',
         templateUrl: 'modules/core/views/search.html'
-      })
-	}.
-	state('about_us', {
-		url: '/about_us',
-		templateUrl: 'modules/core/views/about_us.html'
-	})
+      }).
+	    state('about_us', {
+			url: '/about_us',
+			templateUrl: 'modules/core/views/about_us.html'
+		})
+	}
 ]);
