@@ -14,7 +14,7 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 		}).
     state('search', {
         url: '/search/{keyword}',
-        templateUrl: 'modules/core/views/search.html'
+        templateUrl: 'modules/core/views/search_result_list.html'
       }).
 	    state('about_us', {
 			url: '/about_us',
