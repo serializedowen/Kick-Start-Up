@@ -1,4 +1,4 @@
-<section data-ng-controller="SettingsController" data-ng-init="findOne()" style="margin-top:20px;">
+<section data-ng-controller="SettingsController" data-ng-init="findOne()" data-ng-init="findArticles()" style="margin-top:20px;">
 
     <div id="projecthead" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:block;box-shadow:0 2px 10px 0px #777777, 0 -1px 0 rgba(255, 255, 255, 0.16) inset;background-color:#0B86C3;border-bottom:1px solid #006186;margin-bottom:1px;padding:0.1em 10%;text-align:center;margin-bottom:10px;margin-top:-10px;">
             <h1 style='-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-size:1.125em;margin-top:0;font-family:"Alfa Slab One", Georgia, serif;color:#fff;font-weight:normal;padding-top:0.23em;margin-bottom:.25em;left:-18px;line-height:0.5em;position:relative;text-shadow:0 -2px 0 #006186;'>
@@ -56,6 +56,9 @@
                         </li>
                     </ul>
                 <a class="btn btn-primary" href="/#!/settings/profile" ng-show="myProfile()">Edit Profile</a>
+                <a class="btn btn-primary" ng-click="upvote()" ng-hide="liked()">Like!</a>
+                <a ng-show="liked()">Liked!</a>
+                <span>{{profile.upvote}}</span>
                 <a class="btn btn-primary" ng-click="changeFriendStatus()" ng-show="!myProfile() && !alreadyFriends()" style="float:left;width:30%;">Add Friend</a>
                 <a ng-show="alreadyFriends()" class="btn btn-primary" style="float:left;width:30%;">You two are friends!</a>
             </div>
@@ -104,7 +107,7 @@
             <img src="modules/core/img/element/profile.png" style="width:50px; height:50px">
             <li style="margin:0;padding:0;width:95px;float:left;display:block;padding-left:8px;height:50px;border-right:1px dotted #bbb;text-transform:uppercase;">
                 Projects
-                <strong style="margin:0;padding:0;color:#434343;display:block;font-size:2.2em;line-height:1.1em;font-weight:bold;">13</strong>
+                <strong style="margin:0;padding:0;color:#434343;display:block;font-size:2.2em;line-height:1.1em;font-weight:bold;" ng-init="result = findArticles()">{{result.length}}</strong>
             </li>
             <li style="margin:0;padding:0;width:95px;float:left;display:block;padding-left:8px;height:50px;border-right:1px dotted #bbb;text-transform:uppercase;">
                 Friends
@@ -151,22 +154,7 @@
         </div>
     </div>
     <div>
-        <input type="button" ng-click="findArticles()" />
-    </div>
-    <div>
-        <span>{{user.upvote}}</span>
-        <input type="button" ng-click="upvote()" />
-    </div>
-    <div>
-        <input type="button" ng-click="findApplied()" />
-    </div>
-    <div>
-        <form name="pictureForm" data-ng-submit="savePic(this.file)">
-            <input type="file" id="picture" name="picture" data-ng-model='picture' value="" > 
-            <input type="submit" id="i_submit" value="Submit">
-                <br>
-            <img src="" width="200" style="display:none;" />
-        </form>
+        <a href="/#!/settings/myArticles/{{profile._id}}" class="btn btn-primary" role="button">View Posts</a>
     </div>
 
 </section>

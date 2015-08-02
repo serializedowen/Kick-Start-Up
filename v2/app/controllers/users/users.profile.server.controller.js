@@ -71,26 +71,18 @@ exports.me = function(req, res) {
 };
 
 exports.upvote = function(req, res){
-	var user = req.user;
-	if(user){
+	var user = req.profile;
+		console.log(user.firstName);
 		user.upvote += 1;
 		user.save(function(err) {
 			if (err) {
 				return res.status(400).send({
 					message: errorHandler.getErrorMessage(err)
 				});
-			} else {
-				req.login(user, function(err) {
-					if (err) {
-						res.status(400).send(err);
-					} else {
-						console.log(user.upvote);
-						res.json(user);
-					}
-				});
 			}
+			console.log(user.upvote);
+			res.json(user); 
 		});
-	}
 }
 exports.addToUpvote = function(req, res){
 	var user = req.user;
@@ -106,14 +98,12 @@ exports.addToUpvote = function(req, res){
 		});
 }
 exports.getUserProfile = function(req, res) {
-  res.json(req.user);
+  res.json(req.profile);
 };
 exports.savePic = function(req, res){
 	console.log('here');
 	console.log(req.body);
 };
-
-
 exports.getFriendList = function(req, res) {
   res.json(req.profile.friends);
 };

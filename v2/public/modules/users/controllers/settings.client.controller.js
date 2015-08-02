@@ -120,11 +120,21 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
     };
     $scope.upvote = function(){
     	$http.put('/user/'+$stateParams.userId+'/upvote').success(function(){
-    		$scope.user.upvote += 1;
+    		$scope.profile.upvote += 1;
     	});
     	$http.post('/user/'+Authentication.user._id+'/upvoteList', $stateParams).success(function(){
     		$scope.user.upvoteList.push($stateParams.userId);
     	});
+    };
+    $scope.liked = function(){
+    	for (var n =0;n < $scope.user.upvoteList.length; n++){
+    		if($scope.user.upvoteList[n] == $stateParams.userId){
+    			console.log("true");
+    			return true;
+    		};
+    	};
+    	console.log("false");
+    	return false;
     };
     $scope.savePic = function(picture){
     	console.log(picture);
