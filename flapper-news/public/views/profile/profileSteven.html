@@ -15,6 +15,16 @@
         </span>
      </h3>
     </div>
+    <form ng-submit="addFriend()"
+      style="margin-top:30px;" ng-show="isLoggedIn()">
+      <h3>Add friend</h3>
+        <button type="submit" class="btn btn-primary">Post</button>
+    </form>
+    <form ng-submit="upvote()"
+      style="margin-top:30px;" ng-show="isLoggedIn()">
+      <h3>Upvote</h3>
+        <button type="submit" class="btn btn-primary">Post</button>
+    </form>
     
     <form ng-submit="changeBio()"
       style="margin-top:30px;" ng-show="isLoggedIn()">

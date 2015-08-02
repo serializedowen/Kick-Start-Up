@@ -11,11 +11,13 @@ mongoose.connect('mongodb://adminkick:adminkick@ds059712.mongolab.com:59712/kick
 require('./models/Posts');
 require('./models/Comments');
 require('./models/Users');
-require('./models/Profile')
+require('./models/Profiles');
 require('./config/passport');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var passport = require('passport');
+
+
 
 var app = express();
 
@@ -39,6 +41,18 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+app.get('/auth/facebook',
+passport.authenticate('facebook'),
+function(req, res){
+});
+
+app.get('/auth/facebook/callback',
+passport.authenticate('facebook', { failureRedirect: '/' }),
+function(req, res) {
+ res.redirect('/');
+});
+
 
 // error handlers
 

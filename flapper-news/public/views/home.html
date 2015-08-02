@@ -8,6 +8,9 @@
       <h3> Job Postings</h3>
     </div>
     <div ng-repeat="post in posts ">
+      <span class="glyphicon glyphicon-thumbs-up"
+        ng-click="incrementUpvotes(post)"></span>
+      {{post.upvotes}}
       <span style="font-size:20px; margin-left:10px;">
         <span>
           <a href="#/posts/{{post._id}}">{{post.title}}</a>

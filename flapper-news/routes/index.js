@@ -64,7 +64,7 @@ router.param('comment', function(req, res, next, id) {
 });
 
 router.param('profile', function(req, res, next, id) {
-  var query = Profile.findOne({username:id} , function(err,obj) { console.log("hi"); });
+  var query = Profile.findOneAndUpdate({username:id} , function(err,profile) { console.log("hi"); });
   query.exec(function (err, profile){
     if (err) { return next(err); }
     if (!profile) { return next(new Error("can't find comment")); }
@@ -76,11 +76,11 @@ router.param('profile', function(req, res, next, id) {
 
 
 // return a post
-router.get('/profile/:profile', function(req,res,next){
-    return res.json(req.profile);
+router.get('/profiles/:profile', function(req,res,next){
+    res.json(req.profile);
 });
 
-router.post('/profile', auth, function(req, res, next) {
+router.post('/profiles', auth, function(req, res, next) {
   var profile = new Profile(req.body);
 
   profile.save(function(err, profile){
@@ -99,21 +99,27 @@ router.get('/posts/:post', function(req, res, next) {
 
 
 
-router.post('/profile/:profile/changeBio', function(req, res, next) { 
-  req.profile.update({'bio': 'hi'} ,function(err, profile){
-    if (err) {return next(err); }
-
-    res.json(profile);
-  });
+router.put('/profiles/:profile/changeBio', function(req, res, next) { 
+  try{
+    //var query = Profile.findOne({username:req.profile.username} , function(err,obj) { console.log("hi"); });
+    req.profile.changebio(req.body, function(err, profile){
+      if (err) { return next(err); }
+      res.json(profile);
+    });
+  }catch(ex){
+    console.log(ex);
+    console.log("Error");
+  }
 });
-router.post('/profile/:profile/changefirstname', function(req, res, next) {
+
+router.post('/profiles/:profile/changefirstname', function(req, res, next) {
   req.profile.changeFirstname("hi", function(err, profile){
     if (err) { return next(err); }
 
     res.json(profile);
   });
 });
-router.post('/profile/:profile/changelastname', function(req, res, next) {
+router.post('/profiles/:profile/changelastname', function(req, res, next) {
   req.profile.changeLastname("hi", function(err, profile){
     if (err) { return next(err); }
 
@@ -125,11 +131,18 @@ router.post('/profile/:profile/changelastname', function(req, res, next) {
 router.put('/posts/:post/upvote', function(req, res, next) {
   req.post.upvote(function(err, post){
     if (err) { return next(err); }
-
+    console.log(post);
     res.json(post);
   });
 });
 
+router.put('/profiles/:profile/Upvote', function(req, res, next) {
+  console.log("console");
+  req.profile.Upvote(function(err, profile){
+    if (err) { return next(err); }
+    res.json(profile);
+  });
+});
 // create a new comment
 router.post('/posts/:post/comments', auth, function(req, res, next) {
   var comment = new Comment(req.body);
@@ -147,6 +160,19 @@ router.post('/posts/:post/comments', auth, function(req, res, next) {
     });
   });
 });
+
+router.post('/profiles/:profile/friends', auth, function(req, res, next) {
+  var comment = new Profile(req.body);
+  console.log(comment);
+  req.profile.friends.push(comment);
+  req.profile.save(function(err, profile) {
+    if(err){ return next(err); }
+
+    res.json(comment);
+  });
+});
+
+
 
 router.post('/posts/:post/applicants', auth, function(req, res, next) {
   var comment = new Comment(req.body);
@@ -182,7 +208,7 @@ router.post('/login', function(req, res, next){
     return res.status(400).json({message: 'Please fill out all fields'});
   }
 
-  passport.authenticate('local', function(err, user, info){
+  passport.authenticate('facebook', function(err, user, info){
     if(err){ return next(err); }
 
     if(user){

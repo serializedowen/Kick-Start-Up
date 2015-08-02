@@ -53,7 +53,7 @@ function($stateProvider, $urlRouterProvider) {
 	  }]
   })
     .state('profile', {
-      url: '/profile/{id}',
+      url: '/profiles/{id}',
       templateUrl: '/views/profile/profileSteven.html',
       controller: 'ProfileCtrl',
       resolve: {
@@ -72,6 +72,10 @@ function($stateProvider, $urlRouterProvider) {
         }
       }]
     })
+  .state('admin', {
+    url: '/admin',
+    template: 'Redirecting...<script>window.location="https://mongolab.com/databases/kick-start-up"</script>'
+    })
   .state('404', {
     url: '/page_not_found',
     templateUrl: 'views/404.server.view.html'
@@ -83,35 +87,47 @@ function($stateProvider, $urlRouterProvider) {
 .factory('profile', ['$http', 'auth', function($http, auth){
     var p = {};
     p.get = function(id){
-      return $http.get('/profile/' + id).then(function(res){
+      return $http.get('/profiles/' + id).then(function(res){
         return res.data;
       });
     };
     p.create = function(profile){
-    return $http.post('/profile', profile, {
+    return $http.post('/profiles', profile, {
       headers: {Authorization: 'Bearer '+auth.getToken()}
       })
 
     };
 
     p.changeBio = function(profile, bio){
-      return $http.put('/profile/'+auth.currentUser()+'/changeBio', bio, {
-        headers: {Authorization: 'Bearer '+auth.getToken()}
-          });
+      return $http.put('/profiles/'+auth.currentUser()+'/changeBio', {
+      headers: {Authorization: 'Bearer '+auth.getToken()}
+      }).success(function(data){
+        profile.bio = bio;
+      })
     };
     p.changeFirstname = function(profile, bio){
-      return $http.put('/profile/'+auth.currentUser()+'/changefirstname', bio,  {
+      return $http.put('/profiles/'+auth.currentUser()+'/changefirstname', bio,  {
     headers: {Authorization: 'Bearer '+auth.getToken()}
   }).success(function(data){
         profile.changeFirstname(bio);
-      });
+      })
     };
     p.changeLastname = function(profile, bio){
-      return $http.put('/profile/'+auth.currentUser()+'/changelastname', bio, {
+      return $http.put('/profiles/'+auth.currentUser()+'/changelastname', bio, {
     headers: {Authorization: 'Bearer '+auth.getToken()}
   }).success(function(data){
         profile.changeLastname(bio);
-      });
+      })
+    };
+    p.addFriend = function(profile){
+      return $http.post('/profiles/' + auth.currentUser() + '/friends', profile, {
+      headers: {Authorization: 'Bearer '+auth.getToken()}
+      })
+    };
+    p.upvote = function(profile){
+      return $http.put('/profiles/' + profile.username + '/Upvote', {
+        headers: {Authorization: 'Bearer '+auth.getToken()}
+      })
     };
     return p;
 }])
@@ -251,7 +267,9 @@ function($scope, posts, auth, $window, $state){
       title: $scope.title,
       body: $scope.bodyStuff,
       dateStart: Date.now(),
-      dateEnd: $scope.dateEnd
+      dateEnd: $scope.dateEnd,
+      positionsNeeded: $scope.postitonNeeded,
+      numberOfPositions: 4
     }).then(function(post){
       $state.go('home');
     });
@@ -259,6 +277,7 @@ function($scope, posts, auth, $window, $state){
     $scope.bodyStuff = '';
     $scope.dateStart = '';
     $scope.dateEnd = '';
+    $scope.postitonNeeded = '';
   };
 
   $scope.incrementUpvotes = function(post) {
@@ -274,7 +293,13 @@ function($scope, posts, auth, $window, $state){
 'profile',
 function($scope, posts, auth, profiles, profile){
   $scope.isLoggedIn = auth.isLoggedIn;
-  $scope.profile = profiles[0];
+  $scope.profile = profiles;
+  $scope.addFriend = function(){
+    profile.addFriend($scope.profile);
+  };
+  $scope.upvote = function(){
+    profile.upvote($scope.profile);
+  };
   $scope.changeBio = function(){
     profile.changeBio($scope.profile,$scope.bio);
   };

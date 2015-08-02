@@ -10,7 +10,8 @@ var PostSchema = new mongoose.Schema({
   dateStart: Date,
   dateEnd: String,
   author: String,
-
+  numberOfPositions: {type: Number},
+  positionsNeeded: {type: String}
 });
 
 PostSchema.methods.upvote = function(cb) {
