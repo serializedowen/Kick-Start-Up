@@ -49,7 +49,9 @@
                 </ul>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Edit Profile</button>
+        <a class="btn btn-primary" href="/#!/settings/profile" ng-show="myProfile()">Edit Profile</a>
+        <a class="btn btn-primary" ng-click="changeFriendStatus()" ng-show="!myProfile() && !alreadyFriends()">Add Friend</a>
+        <a ng-show="alreadyFriends()" class="btn btn-primary">You two are friends!</a>
     </div>
 
 

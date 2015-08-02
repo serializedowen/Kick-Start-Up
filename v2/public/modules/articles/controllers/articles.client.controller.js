@@ -49,7 +49,7 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
       //console.log(article.applicants);
       $http.post('/articles/' + $scope.article._id + '/apply').success(function(data){
         $scope.article = data;
-      })
+      });
     };
 
     $scope.unapplyForJob = function() {
@@ -57,7 +57,7 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
       //console.log(article.applicants);
       $http.delete('/articles/' + $scope.article._id + '/apply').success(function(data){
         $scope.article = data;
-      })
+      });
     };
 
 		$scope.find = function() {
@@ -72,7 +72,7 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
         }
       }
       return false;
-    }
+    };
 
 		$scope.findOne = function() {
 			$scope.article = Articles.get({articleId: $stateParams.articleId});

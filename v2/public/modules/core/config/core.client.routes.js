@@ -31,6 +31,6 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 		state('term_of_use', {
 			url: '/term_of_use',
 			templateUrl: 'modules/core/views/term_of_use.html'
-		})
+		});
 	}
 ]);
