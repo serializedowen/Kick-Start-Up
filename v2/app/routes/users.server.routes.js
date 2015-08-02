@@ -14,7 +14,10 @@ module.exports = function(app) {
 	app.route('/users').put(users.update);
 	app.route('/users/accounts').delete(users.removeOAuthProvider);
   	app.route('/users/:userId').get(users.getUserProfile);
-  	app.route('/users/:userId/articles').get(users.getUserArticles);
+  	app.route('/user/:userId/upvote').put(users.upvote);
+  	app.route('/user/:userId/upvoteList').post(users.addToUpvote);
+  	app.route('/user/:userId/pic').post(users.savePic);
+
 
 	// Setting up the users password api
 	app.route('/users/password').post(users.changePassword);

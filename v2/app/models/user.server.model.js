@@ -48,6 +48,10 @@ var UserSchema = new Schema({
 		validate: [validateLocalStrategyProperty, 'Please fill in your email'],
 		match: [/.+\@.+\..+/, 'Please fill a valid email address']
 	},
+	upvote: {
+		type: Number,
+		default: 0
+	},
 	username: {
 		type: String,
 		unique: 'testing error message',
@@ -88,7 +92,16 @@ var UserSchema = new Schema({
 	},
 	resetPasswordExpires: {
 		type: Date
-	}
+	},
+	upvoteList: [{
+    type: Schema.ObjectId,
+    ref: 'User'}],
+
+    profilePic: { 
+    	data: Buffer, 
+    	contentType: String
+    }
+
 });
 
 /**

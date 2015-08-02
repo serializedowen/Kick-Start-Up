@@ -73,18 +73,37 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
       $scope.userProfile = UserProfile.get({userId: $stateParams.userId});
     };
     $scope.findArticles = function() {
-    	console.log('here');
+    	console.log($stateParams.userId);
     	$http.get('/articles/man/'+$stateParams.userId).success(function(data){
         	$scope.result = data;
+        	console.log($scope.result);
+        	for (var n in $scope.result){
+        		console.log($scope.result[n].user);
+        	};
       	});
-      	console.log(result);
     };
-      //$scope.userProfile = UserProfile.get({userId: $stateParams.userId});
-
-      $http.get('/user/' + $stateParams.userId).success(function(data){
-        $scope.userProfile = data;
-      }).error(function(err){
-
-      });
+    $scope.findApplied = function(){
+    	$http.get('/article/person/'+$stateParams.userId).success(function(data){
+        	$scope.result = data;
+        	console.log($scope.result);
+        	for (var n in $scope.result){
+        		console.log($scope.result[n]);
+        	};
+      	});
     };
+    $scope.upvote = function(){
+    	$http.put('/user/'+$stateParams.userId+'/upvote').success(function(){
+    		$scope.user.upvote += 1;
+    	});
+    	$http.post('/user/'+Authentication.user._id+'/upvoteList', $stateParams).success(function(){
+    		$scope.user.upvoteList.push($stateParams.userId);
+    	});
+    };
+    $scope.savePic = function(picture){
+    	console.log(picture);
+    	$http.post('/user/' + $stateParams.userId + '/pic', picture).success(function(){
+    		console.log("coolie");
+    	});
+    };
+    }//$scope.userProfile = UserProfile.get({userId: $stateParams.userId});
 ]);

@@ -16,11 +16,16 @@ module.exports = function(app) {
     .post(users.requiresLogin, articles.applyForJob)
     .delete(users.requiresLogin, articles.unapplyForJob);
 
-  app.route('/articles/:articleId')
+  	app.route('/articles/:articleId')
 		.get(articles.read)
 		.put(users.requiresLogin, articles.hasAuthorization, articles.update)
 		.delete(users.requiresLogin, articles.hasAuthorization, articles.delete);
-
+	app.route('/articles/man/:personId')
+		.get(articles.read);
+	app.route('/article/person/:applicantId')
+		.get(articles.read);
 	// Finish by binding the article middleware
 	app.param('articleId', articles.articleByID);
+	app.param('personId', articles.articleByAuthor);
+	app.param('applicantId', articles.articleByApplicant);
 };

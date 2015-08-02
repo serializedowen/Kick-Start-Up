@@ -33,7 +33,7 @@ var ArticleSchema = new Schema({
 	},
   applicants: [{
     type: Schema.ObjectId,
-    ref: 'User'}],
+    ref: 'User'}]
 });
 
 mongoose.model('Article', ArticleSchema);

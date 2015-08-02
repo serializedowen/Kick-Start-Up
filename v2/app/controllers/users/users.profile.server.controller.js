@@ -56,9 +56,46 @@ exports.me = function(req, res) {
   res.json(req.user || null);
 };
 
+exports.upvote = function(req, res){
+	var user = req.user;
+	if(user){
+		user.upvote += 1;
+		user.save(function(err) {
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} else {
+				req.login(user, function(err) {
+					if (err) {
+						res.status(400).send(err);
+					} else {
+						console.log(user.upvote);
+						res.json(user);
+					}
+				});
+			}
+		});
+	}
+}
+exports.addToUpvote = function(req, res){
+	var user = req.user;
+		user.upvoteList.push(req.body.userId);
+		user.save(function(err) {
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			}
+			console.log(user.upvoteList);
+			res.json(user); 
+		});
+}
 exports.getUserProfile = function(req, res) {
-
-  console.log("here");
-  console.log(req.profile);
-  res.json(req.profile);
+  res.json(req.user);
 };
+exports.savePic = function(req, res){
+	console.log('here');
+	console.log(req.body);
+};
+

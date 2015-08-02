@@ -21,9 +21,11 @@ exports.create = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+			console.log(article.user);
 			res.json(article);
 		}
 	});
+	//console.log(article.user._id);
 };
 
 /**
@@ -96,12 +98,35 @@ exports.articleByID = function(req, res, next, id) {
 	});
 };
 exports.articleByAuthor = function(req, res, next, id) {
-	Article.find({'user.id' : id}).populate('user', 'displayName').exec(function(err, article) {
+	console.log(id);
+	Article.find({'user' : id}).exec(function(err, article) {
 		if (err) return next(err);
 		if (!article) return next(new Error('Failed to load article ' + id));
 		req.article = article;
 		next();
 	});
+};
+
+exports.articleByApplicant = function(req, res, next, id){
+	var article = [];
+	var articles = Article.find().exec(function(err, articles) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			for (var x in articles){
+				for (var n = 0; n < articles[x].applicants.length; n++){
+					if(articles[x].applicants[n] == id){
+						article.push(articles[x]);
+				};
+			};
+		};
+			req.article = article;
+			next();
+		}
+	});
+
 };
 
 /**
