@@ -3,11 +3,11 @@
 /**
  * Module dependencies.
  */
-var passport = require('passport');
+var passport = require('passport'),
+  users = require('../../app/controllers/users.server.controller');
 
 module.exports = function(app) {
 	// User Routes
-	var users = require('../../app/controllers/users.server.controller');
 
 	// Setting up the users profile api
 	app.route('/users/me').get(users.me);

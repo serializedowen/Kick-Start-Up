@@ -8,7 +8,7 @@
         <div ng-repeat="n in result | filter : postFilter">
             <div class="row">
                 <div class="alert alert-success" role="alert">
-                    Author: {{n.author}}
+                    Author: {{n.user.displayName}}
                     Title: {{n.title}}
                     <a href="/#!/articles/{{n._id}}" class="btn btn-primary pull-right" role="button">Details</a>
                 </div>

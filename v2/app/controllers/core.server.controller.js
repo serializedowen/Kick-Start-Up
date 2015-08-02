@@ -6,7 +6,7 @@
 
 var _ = require('lodash'),
   UsrCtrl = require('./users.server.controller'),
-  ArticleCtrl = require('./articles.server.controller')
+  ArticleCtrl = require('./articles.server.controller');
 
 exports.index = function(req, res) {
 	res.render('index', {
@@ -16,8 +16,5 @@ exports.index = function(req, res) {
 };
 
 exports.search = function(req, res) {
-  console.log("server");
-
   ArticleCtrl.list(req, res);
-
 };

@@ -1,20 +1,19 @@
-<section data-ng-init="findOne()" data-ng-controller="SettingsController">
+<section data-ng-controller="SettingsController" data-ng-init="findOne()">
     <div id="user_header" class="row" style="width: 820px; height: 150px">
-
         <div id="user" style="width: 750px; height: 150px; float: left;">
-
             <div id="user_picture" style="float: left; padding-right: 20px;">
                 <div id="picture_box">
                     <a href="">
                         <img src="/views/image/avatar.gif" width="140" height="140">
+                        {{profile.email}}
                     </a>
                 </div>
             </div>
 
             <div id="user_info" style="width: 820px; height: 140px; background-color: rgba(60, 60, 60, 0.4); padding-top: 10px;">
                 <h2 class="user_name" style="font-family: 'Open Sans', sans-serif; font-weight: 400; margin: 0; color: #fff; letter-spacing: 1.75px;">
-                    <span data-ng-bind="userProfile.firstName"></span>
-                    <span data-ng-bind="userProfile.lastName"></span>
+                    <span data-ng-bind="profile.firstName"></span>
+                    <span data-ng-bind="profile.lastName"></span>
                 </h2>
 
                 <ul style="margin:-5 auto; padding:0px; width:140px; float: right;">
