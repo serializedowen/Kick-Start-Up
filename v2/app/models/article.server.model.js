@@ -16,11 +16,17 @@ var ArticleSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
+
+  endDate: {
+    type: Date,
+    default: (Date.now() + 5.184e+9)
+    //required: 'End Date cannot be null.'
+  },
 	title: {
 		type: String,
 		default: '',
 		trim: true,
-		required: 'Title cannot be blank'
+		required: 'Project Name cannot be blank'
 	},
 	content: {
 		type: String,
@@ -33,7 +39,18 @@ var ArticleSchema = new Schema({
 	},
   applicants: [{
     type: Schema.ObjectId,
-    ref: 'User'}]
+    ref: 'User'
+  }],
+  members: [{
+    type: Schema.ObjectId,
+    ref: 'User',
+    default: []
+  }],
+  thumbsUp: {
+    type: Number,
+    default: 0
+  }
+
 });
 
 mongoose.model('Article', ArticleSchema);

@@ -170,3 +170,16 @@ exports.unapplyForJob = function(req, res) {
     }
   })
 };
+
+exports.upvote = function(req, res) {
+  req.article.thumbsUp += 1;
+  req.article.save(function(err){
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(req.article);
+    }
+  })
+};

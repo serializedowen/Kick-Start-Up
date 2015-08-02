@@ -54,7 +54,6 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
 
     $scope.unapplyForJob = function() {
       var article = $scope.article;
-      //console.log(article.applicants);
       $http.delete('/articles/' + $scope.article._id + '/apply').success(function(data){
         $scope.article = data;
       });
@@ -77,5 +76,17 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
 		$scope.findOne = function() {
 			$scope.article = Articles.get({articleId: $stateParams.articleId});
 		};
+
+    $scope.thumbsup = function() {
+      var article = $scope.article;
+      $http.post('/articles/' + $scope.article._id + '/upvote').success(function(data){
+        $scope.article = data;
+      });
+    };
+
+
+    $scope.parse = function(){
+      return Date.parse($scope.article.endDate) - Date.parse($scope.article.created);
+    }
 	}
 ]);

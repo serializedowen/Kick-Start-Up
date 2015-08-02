@@ -47,12 +47,12 @@ angular.module('core').service('Menus', [
 		};
 
 		// Get the menu object by menu id
-		this.getMenu = function(menuId) {
-			// Validate that the menu exists
-			this.validateMenuExistance(menuId);
+      this.getMenu = function(menuId) {
+        // Validate that the menu exists
+        this.validateMenuExistance(menuId);
 
-			// Return the menu object
-			return this.menus[menuId];
+        // Return the menu object
+        return this.menus[menuId];
 		};
 
 		// Add new menu object by menu id
