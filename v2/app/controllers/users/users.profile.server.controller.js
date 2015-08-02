@@ -72,3 +72,7 @@ exports.me = function(req, res) {
 exports.getUserProfile = function(req, res) {
   res.json(req.profile);
 };
+
+exports.getFriendList = function(req, res) {
+  res.json(req.profile.friends);
+};

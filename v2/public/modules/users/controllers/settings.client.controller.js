@@ -93,6 +93,11 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
 
     $scope.findOne = function() {
       $scope.profile = UserProfile.get({userId: $stateParams.userId});
+      $http.get('/users/' + $stateParams.userId + '/friends').success(function(data){
+        $scope.friends = data;
+      }).error(function(){
+        $scope.error.message = 'failed to load friend list.'
+      })
     };
 
 	}
