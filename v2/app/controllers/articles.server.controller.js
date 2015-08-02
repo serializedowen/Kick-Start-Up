@@ -109,5 +109,7 @@ exports.hasAuthorization = function(req, res, next) {
 };
 
 exports.applyForJob = function(req, res) {
+  var article = req.article;
+
 
 };
