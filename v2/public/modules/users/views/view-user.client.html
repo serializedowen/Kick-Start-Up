@@ -1,5 +1,13 @@
-<section data-ng-controller="SettingsController" data-ng-init="findOne()">
-    <div id="user_header" class="row" style="width: 820px; height: 150px">
+<section data-ng-controller="SettingsController" data-ng-init="findOne()" style="margin-top:20px;">
+
+    <div id="projecthead" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:block;box-shadow:0 2px 10px 0px #777777, 0 -1px 0 rgba(255, 255, 255, 0.16) inset;background-color:#0B86C3;border-bottom:1px solid #006186;margin-bottom:1px;padding:0.1em 10%;text-align:center;margin-bottom:10px;margin-top:-10px;">
+            <h1 style='-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-size:1.125em;margin-top:0;font-family:"Alfa Slab One", Georgia, serif;color:#fff;font-weight:normal;padding-top:0.23em;margin-bottom:.25em;left:-18px;line-height:0.5em;position:relative;text-shadow:0 -2px 0 #006186;'>
+                <span style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;"><span data-ng-bind="profile.firstName"></span>
+                    <span data-ng-bind="profile.lastName"></span></span>
+            </h1>
+    </div>
+
+    <div id="user_header" class="row" style="width: 820px; height: 150px; margin-left:2px;">
         <div id="user" style="width: 750px; height: 150px; float: left;">
             <div id="user_picture" style="float: left; padding-right: 20px;">
                 <div id="picture_box">
@@ -39,17 +47,18 @@
                         </a>
                     </li>
                 </ul>
-
                 <hr style="border: solid; border-width: 1px; border-color: #0B86C3;">
-                <ul id="user_list" style="font-family:'Open Sans', sans-serif;font-weight:200;font-size:14px;color:#fff;padding:0;list-style-type:none;margin:0;">
-                    <li style="display: inline; margin-right: 20px; letter-spacing: 1px;">
-                        <i class="icon-building info_icon" style="color: #0B86C3; font-size: 18px; padding: 3px;"></i>
-                        Web Developer/Desinger
-                    </li>
-                </ul>
+                <div>
+                    <ul id="user_list" style="font-family:'Open Sans', sans-serif;font-weight:200;font-size:14px;color:#fff;padding:0;list-style-type:none;margin:0;float:left;width:30%;">
+                        <li style="display: inline; margin-right: 20px; letter-spacing: 1px;">
+                            <i class="icon-building info_icon" style="color: #0B86C3; font-size: 18px; padding: 3px;"></i>
+                            Web Developer/Desinger
+                        </li>
+                    </ul>
+                <button type="submit" class="btn btn-primary" style="float:left;width:30%;">Edit Profile</button>
+            </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Edit Profile</button>
     </div>
 
 
