@@ -5,8 +5,8 @@
                 <div id="picture_box">
                     <a href="">
                         <img src="modules/core/img/element/avatar.gif" width="140" height="140">
-                        {{profile.email}}
                     </a>
+                    <a class="btn btn-warning" ng-show="!myProfile()" href="mailto:{{profile.email}}?Subject=Hello%20again" target="_top">Email Me</a>
                 </div>
             </div>
 
@@ -101,7 +101,7 @@
             </li>
             <li style="margin:0;padding:0;width:95px;float:left;display:block;padding-left:8px;height:50px;border-right:1px dotted #bbb;text-transform:uppercase;">
                 Friends
-                <strong style="margin:0;padding:0;color:#434343;display:block;font-size:2.2em;line-height:1.1em;font-weight:bold;">150</strong>
+                <strong style="margin:0;padding:0;color:#434343;display:block;font-size:2.2em;line-height:1.1em;font-weight:bold;">{{profile.friends.length}}</strong>
             </li>
             <li style="margin:0;padding:0;border:0px !important;width:95px;float:left;display:block;padding-left:8px;height:50px;border-right:1px dotted #bbb;text-transform:uppercase;">
                 Member
@@ -118,11 +118,10 @@
                 <h2>Background</h2>
             </header>
             <p>
-
+                {{profile.background}}
             </p>
 
             <div>
-                <input type="button" value="Modify" onClick="locking()" />
                 <div id="ly" style="position: absolute; top: 0px; filter: alpha(opacity=30); background-color: #777; z-index: 2; left: 0px; display: none;"></div>
                 <!---->
                 <div id="Layer2" align="center" style="position: absolute; z-index: 3; left: expression_r((document.body.offsetWidth-540)/2); top: expression_r((document.body.offsetHeight-170)/10); background-color: #fff; display: none;" >
@@ -136,9 +135,7 @@
                 <p>
                 </p>
                 <div>
-                    <input type="button" value="Modify" onClick="locking()" />
                     <div id="ly" style="position: absolute; top: 0px; filter: alpha(opacity=30); background-color: #777; z-index: 2; left: 0px; display: none;"></div>
-                    <!---->
                     <div id="Layer2" align="center" style="position: absolute; z-index: 3; left: expression_r((document.body.offsetWidth-540)/2); top: expression_r((document.body.offsetHeight-170)/10); background-color: #fff; display: none;" >
                     </div>
                 </div>

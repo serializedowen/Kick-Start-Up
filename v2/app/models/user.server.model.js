@@ -78,6 +78,10 @@ var UserSchema = new Schema({
 	updated: {
 		type: Date
 	},
+  background: {
+    type: String,
+    default: ''
+  },
 	created: {
 		type: Date,
 		default: Date.now
