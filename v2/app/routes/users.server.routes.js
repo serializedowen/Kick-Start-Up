@@ -13,7 +13,8 @@ module.exports = function(app) {
 	app.route('/users/me').get(users.me);
 	app.route('/users').put(users.update);
 	app.route('/users/accounts').delete(users.removeOAuthProvider);
-  app.route('/users/:userId').get(users.getUserProfile);
+  	app.route('/users/:userId').get(users.getUserProfile);
+  	app.route('/users/:userId/articles').get(users.getUserArticles);
 
 	// Setting up the users password api
 	app.route('/users/password').post(users.changePassword);

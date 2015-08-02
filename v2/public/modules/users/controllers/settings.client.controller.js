@@ -70,8 +70,14 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
 		};
 
     $scope.findOne = function() {
-      console.log("abc");
       $scope.userProfile = UserProfile.get({userId: $stateParams.userId});
-    }
+    };
+    $scope.findArticles = function() {
+    	console.log('here');
+    	$http.get('/articles/man/'+$stateParams.userId).success(function(data){
+        	$scope.result = data;
+      	});
+      	console.log(result);
+    };
 	}
 ]);
