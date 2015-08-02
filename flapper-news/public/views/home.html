@@ -5,9 +5,9 @@
       <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
   </div>
     <div>
-      <h3> Job Postings</h3>
-    </div>
-    <div ng-repeat="post in posts ">
+<h3> Job Postings</h3>
+</div>
+<div ng-repeat="post in posts ">
       <span style="font-size:20px; margin-left:10px;">
         <span>
           <a href="#/posts/{{post._id}}">{{post.title}}</a>
@@ -16,9 +16,9 @@
       <span ng-show="post.author">
         posted by {{post.author}}
       </span>
-    </div>
-      <a href="#/posts/makingPost" ng-show="isLoggedIn()"> make a Post</a>
-    <div ng-hide="isLoggedIn()">
-      <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.</h3>
-  </div>
- </section>
+</div>
+<a href="#/posts/makingPost" ng-show="isLoggedIn()"> make a Post</a>
+<div ng-hide="isLoggedIn()">
+    <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.</h3>
+</div>
+</section>

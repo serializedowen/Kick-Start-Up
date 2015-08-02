@@ -6,8 +6,8 @@ module.exports = {
 		title: 'Kick-Start-Up - Development Environment'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || 'APP_ID',
-		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+		clientID: process.env.FACEBOOK_ID || '491282591040878',
+		clientSecret: process.env.FACEBOOK_SECRET || '293558bc25577b260f7395ee8dac4b23',
 		callbackURL: '/auth/facebook/callback'
 	},
 	twitter: {

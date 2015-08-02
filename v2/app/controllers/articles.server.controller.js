@@ -107,3 +107,7 @@ exports.hasAuthorization = function(req, res, next) {
 	}
 	next();
 };
+
+exports.applyForJob = function(req, res) {
+
+};

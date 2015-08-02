@@ -6,6 +6,8 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
+
+
 /**
  * Article Schema
  */
@@ -28,7 +30,10 @@ var ArticleSchema = new Schema({
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
-	}
+	},
+  applicants: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'}],
 });
 
 mongoose.model('Article', ArticleSchema);

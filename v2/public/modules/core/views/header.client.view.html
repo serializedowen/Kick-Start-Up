@@ -23,7 +23,15 @@
 				<a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
 			</li>
 		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
+
+        <form class="navbar-form navbar-left" ng-submit="search()" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search" ng-model="keyword">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+
+        <ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
 			<li ui-route="/signup" ng-class="{active: $uiRoute}">
 				<a href="/#!/signup">Sign Up</a>
 			</li>
@@ -33,13 +41,18 @@
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
+            <li>
+                <a>
+                    Signed In As:
+                </a>
+            </li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
                     <li>
-                        <a href="/#!/users/{{authentication.user.userId}}">My Profile</a>
+                        <a href="/#!/users/{{authentication.user._id}}">My Profile</a>
                     </li>
 					<li>
 						<a href="/#!/settings/profile">Edit Profile</a>

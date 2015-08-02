@@ -17,6 +17,8 @@ module.exports = function(app) {
 		.put(users.requiresLogin, articles.hasAuthorization, articles.update)
 		.delete(users.requiresLogin, articles.hasAuthorization, articles.delete);
 
+  app.route('articles/:articalId/apply')
+    .post(users.requiresLogin, articles.applyForJob);
 	// Finish by binding the article middleware
 	app.param('articleId', articles.articleByID);
 };
