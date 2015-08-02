@@ -10,6 +10,19 @@
 			<i class="glyphicon glyphicon-trash"></i>
 		</a>
 	</div>
+
+    <div class="pull-right" data-ng-show="authentication.user._id == article.user._id && !applied()">
+        <a class="btn btn-primary" ng-click="applyForJob()">Apply!
+            <i class="glyphicon glyphicon-check"></i>
+        </a>
+    </div>
+
+    <div class="pull-right" data-ng-show="authentication.user._id == article.user._id && applied()">
+        <a class="btn btn-primary" ng-click="unapplyForJob()">Unapply!
+            <i class="glyphicon glyphicon-unchecked"></i>
+        </a>
+    </div>
+
 	<small>
 		<em class="text-muted">
 			Posted on

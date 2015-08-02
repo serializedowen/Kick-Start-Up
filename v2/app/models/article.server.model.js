@@ -32,7 +32,7 @@ var ArticleSchema = new Schema({
 		ref: 'User'
 	},
   applicants: [{
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.ObjectId,
     ref: 'User'}],
 });
 

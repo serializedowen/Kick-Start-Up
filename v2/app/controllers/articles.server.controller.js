@@ -111,5 +111,29 @@ exports.hasAuthorization = function(req, res, next) {
 exports.applyForJob = function(req, res) {
   var article = req.article;
 
+  req.article.applicants.push(req.user.id);
+  req.article.save(function(err){
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(article);
+    }
+  })
+};
 
+exports.unapplyForJob = function(req, res) {
+  var article = req.article;
+
+  req.article.applicants.remove(req.user.id);
+  req.article.save(function(err){
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(article);
+    }
+  })
 };

@@ -40,6 +40,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
 
 		// Update a user profile
 		$scope.updateUserProfile = function(isValid) {
+
 			if (isValid) {
 				$scope.success = $scope.error = null;
 				var user = new Users($scope.user);

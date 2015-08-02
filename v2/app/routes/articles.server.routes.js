@@ -12,13 +12,15 @@ module.exports = function(app) {
 		.get(articles.list)
 		.post(users.requiresLogin, articles.create);
 
-	app.route('/articles/:articleId')
+  app.route('/articles/:articleId/apply')
+    .post(users.requiresLogin, articles.applyForJob)
+    .delete(users.requiresLogin, articles.unapplyForJob);
+
+  app.route('/articles/:articleId')
 		.get(articles.read)
 		.put(users.requiresLogin, articles.hasAuthorization, articles.update)
 		.delete(users.requiresLogin, articles.hasAuthorization, articles.delete);
 
-  app.route('articles/:articleId/apply')
-    .post(users.requiresLogin, articles.applyForJob);
 	// Finish by binding the article middleware
 	app.param('articleId', articles.articleByID);
 };

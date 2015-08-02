@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles',
-	function($scope, $stateParams, $location, Authentication, Articles) {
+angular.module('articles').controller('ArticlesController', ['$scope', '$http', '$stateParams', '$location', 'Authentication', 'Articles',
+	function($scope, $http, $stateParams, $location, Authentication, Articles) {
 		$scope.authentication = Authentication;
 
 		$scope.create = function() {
@@ -37,7 +37,6 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 
 		$scope.update = function() {
 			var article = $scope.article;
-
 			article.$update(function() {
 				$location.path('articles/' + article._id);
 			}, function(errorResponse) {
@@ -45,9 +44,35 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 			});
 		};
 
+    $scope.applyForJob = function() {
+      var article = $scope.article;
+      //console.log(article.applicants);
+      $http.post('/articles/' + $scope.article._id + '/apply').success(function(data){
+        $scope.article = data;
+      })
+    };
+
+    $scope.unapplyForJob = function() {
+      var article = $scope.article;
+      //console.log(article.applicants);
+      $http.delete('/articles/' + $scope.article._id + '/apply').success(function(data){
+        $scope.article = data;
+      })
+    };
+
 		$scope.find = function() {
       $scope.articles = Articles.query();
     };
+
+    $scope.applied = function(){
+      var la = $scope.article.applicants;
+      for (var n in la){
+        if (la[n] === Authentication.user._id){
+          return true;
+        }
+      }
+      return false;
+    }
 
 		$scope.findOne = function() {
 			$scope.article = Articles.get({
