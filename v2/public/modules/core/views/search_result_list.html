@@ -19,8 +19,9 @@
             <th>Name</th>
             <th>Owner</th>
             <th>Posted date</th>
-            <th>Expiration date</th>
+            <th>End date</th>
             <th>Applicants</th>
+            <th>Thumbs Up</th>
           </tr>
         </thead>
         <tbody ng-repeat="proj in result | filter : postFilter">
@@ -35,13 +36,16 @@
                     {{proj.user.displayName}}
                 </td>
                 <td>
-                    <div class="project-date">Aug 2, 2015</div>
+                    <div class="project-date">{{proj.created | date:'mediumDate'}}</div>
                 </td>
                 <td>
-                    <div class="project-date">Aug 15, 2015</div>
+                    <div class="project-date">{{proj.endDate | date:'mediumDate'}}</div>
                 </td>
                 <td>
                     {{proj.applicants.length}}
+                </td>
+                <td>
+                    placeholder
                 </td>
             </tr>
 

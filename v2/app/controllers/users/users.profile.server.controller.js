@@ -106,7 +106,7 @@ exports.addToUpvote = function(req, res){
 		});
 }
 exports.getUserProfile = function(req, res) {
-  res.json(req.user);
+  res.json(req.profile);
 };
 exports.savePic = function(req, res){
 	console.log('here');
