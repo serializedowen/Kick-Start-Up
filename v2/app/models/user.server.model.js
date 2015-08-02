@@ -82,10 +82,19 @@ var UserSchema = new Schema({
 	updated: {
 		type: Date
 	},
+  background: {
+    type: String,
+    default: ''
+  },
 	created: {
 		type: Date,
 		default: Date.now
 	},
+  friends: [{
+    type: Schema.ObjectId,
+    ref: 'User',
+    default: []
+  }],
 	/* For reset password */
 	resetPasswordToken: {
 		type: String

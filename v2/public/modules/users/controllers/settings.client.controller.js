@@ -12,14 +12,36 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
 			for (var i in $scope.user.additionalProvidersData) {
 				return true;
 			}
-
 			return false;
 		};
+
+    $scope.myProfile = function(){
+      return Authentication.user._id === $stateParams.userId;
+    };
+
+    $scope.alreadyFriends = function(){
+      var la = $scope.user.friends;
+      for (var n in la){
+        if (la[n] === $stateParams.userId){
+          return true;
+        }
+      }
+      return false;
+    };
 
 		// Check if provider is already in use with current user
 		$scope.isConnectedSocialAccount = function(provider) {
 			return $scope.user.provider === provider || ($scope.user.additionalProvidersData && $scope.user.additionalProvidersData[provider]);
 		};
+
+
+    $scope.changeFriendStatus = function(){
+      $http.post('/users/' + $stateParams.userId + '/add_friend').success(function(data){
+        $scope.user = data;
+      }).error(function(err){
+        $scope.error.message = 'failed to add friend';
+      });
+    };
 
 		// Remove a user social account
 		$scope.removeUserSocialAccount = function(provider) {
@@ -70,7 +92,12 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
 		};
 
     $scope.findOne = function() {
-      $scope.userProfile = UserProfile.get({userId: $stateParams.userId});
+      $scope.profile = UserProfile.get({userId: $stateParams.userId});
+      $http.get('/users/' + $stateParams.userId + '/friends').success(function(data){
+        $scope.friends = data;
+      }).error(function(){
+        $scope.error.message = 'failed to load friend list.'
+      })
     };
     $scope.findArticles = function() {
     	console.log($stateParams.userId);
@@ -105,5 +132,5 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
     		console.log("coolie");
     	});
     };
-    }//$scope.userProfile = UserProfile.get({userId: $stateParams.userId});
+    }
 ]);

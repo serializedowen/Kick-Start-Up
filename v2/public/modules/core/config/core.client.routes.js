@@ -14,7 +14,7 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 		}).
     state('search', {
         url: '/search/{keyword}',
-        templateUrl: 'modules/core/views/search.html'
+        templateUrl: 'modules/core/views/search_result_list.html'
       }).
 	    state('about_us', {
 			url: '/about_us',
@@ -31,6 +31,18 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 		state('term_of_use', {
 			url: '/term_of_use',
 			templateUrl: 'modules/core/views/term_of_use.html'
+		}).
+		state('about_page', {
+			url: '/about_page',
+			templateUrl: 'modules/core/views/about_page.html'
+		}).
+		state('project_page', {
+			url: '/project_page',
+			templateUrl: 'modules/core/views/deryk_project_page.html'
+		}).
+		state('search_result_list', {
+			url: '/search_result_list',
+			templateUrl: 'modules/core/views/search_result_list.html'
 		})
 	}
 ]);

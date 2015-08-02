@@ -69,6 +69,17 @@
 					</li>
 				</ul>
 			</li>
+
+            <li class="dropdown" ng-show="authentication.user" ng-click="getFriends()">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    My Friends: <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="friend in friends">
+                        <a href="/#!/users/{{friend._id}}">{{friend.displayName}}</a>
+                    </li>
+                </ul>
+            </li>
 		</ul>
 	</nav>
 </div>

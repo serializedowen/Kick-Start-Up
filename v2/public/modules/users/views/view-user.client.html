@@ -1,12 +1,20 @@
-<section data-ng-controller="SettingsController" data-ng-init="findOne()">
-    <div id="user_header" class="row" style="width: 820px; height: 150px">
+<section data-ng-controller="SettingsController" data-ng-init="findOne()" style="margin-top:20px;">
+
+    <div id="projecthead" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:block;box-shadow:0 2px 10px 0px #777777, 0 -1px 0 rgba(255, 255, 255, 0.16) inset;background-color:#0B86C3;border-bottom:1px solid #006186;margin-bottom:1px;padding:0.1em 10%;text-align:center;margin-bottom:10px;margin-top:-10px;">
+            <h1 style='-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-size:1.125em;margin-top:0;font-family:"Alfa Slab One", Georgia, serif;color:#fff;font-weight:normal;padding-top:0.23em;margin-bottom:.25em;left:-18px;line-height:0.5em;position:relative;text-shadow:0 -2px 0 #006186;'>
+                <span style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;"><span data-ng-bind="profile.firstName"></span>
+                    <span data-ng-bind="profile.lastName"></span></span>
+            </h1>
+    </div>
+
+    <div id="user_header" class="row" style="width: 820px; height: 150px; margin-left:2px;">
         <div id="user" style="width: 750px; height: 150px; float: left;">
             <div id="user_picture" style="float: left; padding-right: 20px;">
                 <div id="picture_box">
                     <a href="">
                         <img src="modules/core/img/element/avatar.gif" width="140" height="140">
-                        {{profile.email}}
                     </a>
+                    <a class="btn btn-warning" ng-show="!myProfile()" href="mailto:{{profile.email}}?Subject=Hello%20again" target="_top">Email Me</a>
                 </div>
             </div>
 
@@ -39,20 +47,21 @@
                         </a>
                     </li>
                 </ul>
-
                 <hr style="border: solid; border-width: 1px; border-color: #0B86C3;">
-                <ul id="user_list" style="font-family:'Open Sans', sans-serif;font-weight:200;font-size:14px;color:#fff;padding:0;list-style-type:none;margin:0;">
-                    <li style="display: inline; margin-right: 20px; letter-spacing: 1px;">
-                        <i class="icon-building info_icon" style="color: #0B86C3; font-size: 18px; padding: 3px;"></i>
-                        Web Developer/Desinger
-                    </li>
-                </ul>
+                <div>
+                    <ul id="user_list" style="font-family:'Open Sans', sans-serif;font-weight:200;font-size:14px;color:#fff;padding:0;list-style-type:none;margin:0;float:left;width:30%;">
+                        <li style="display: inline; margin-right: 20px; letter-spacing: 1px;">
+                            <i class="icon-building info_icon" style="color: #0B86C3; font-size: 18px; padding: 3px;"></i>
+                            Web Developer/Desinger
+                        </li>
+                    </ul>
+                <a class="btn btn-primary" href="/#!/settings/profile" ng-show="myProfile()">Edit Profile</a>
+                <a class="btn btn-primary" ng-click="changeFriendStatus()" ng-show="!myProfile() && !alreadyFriends()" style="float:left;width:30%;">Add Friend</a>
+                <a ng-show="alreadyFriends()" class="btn btn-primary" style="float:left;width:30%;">You two are friends!</a>
+            </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Edit Profile</button>
     </div>
-
-
     <div id="user_friends" ng-hide="true" style="margin:0;padding:0;display:block;width:220px;float:right; float:top;margin-right:40px;overflow:hidden;">
 
         <div class="gcontent" style="margin:0;padding:0;display:block;margin-bottom:20px;">
@@ -99,7 +108,7 @@
             </li>
             <li style="margin:0;padding:0;width:95px;float:left;display:block;padding-left:8px;height:50px;border-right:1px dotted #bbb;text-transform:uppercase;">
                 Friends
-                <strong style="margin:0;padding:0;color:#434343;display:block;font-size:2.2em;line-height:1.1em;font-weight:bold;">150</strong>
+                <strong style="margin:0;padding:0;color:#434343;display:block;font-size:2.2em;line-height:1.1em;font-weight:bold;">{{profile.friends.length}}</strong>
             </li>
             <li style="margin:0;padding:0;border:0px !important;width:95px;float:left;display:block;padding-left:8px;height:50px;border-right:1px dotted #bbb;text-transform:uppercase;">
                 Member
@@ -116,11 +125,10 @@
                 <h2>Background</h2>
             </header>
             <p>
-
+                {{profile.background}}
             </p>
 
             <div>
-                <input type="button" value="Modify" onClick="locking()" />
                 <div id="ly" style="position: absolute; top: 0px; filter: alpha(opacity=30); background-color: #777; z-index: 2; left: 0px; display: none;"></div>
                 <!---->
                 <div id="Layer2" align="center" style="position: absolute; z-index: 3; left: expression_r((document.body.offsetWidth-540)/2); top: expression_r((document.body.offsetHeight-170)/10); background-color: #fff; display: none;" >
@@ -134,9 +142,7 @@
                 <p>
                 </p>
                 <div>
-                    <input type="button" value="Modify" onClick="locking()" />
                     <div id="ly" style="position: absolute; top: 0px; filter: alpha(opacity=30); background-color: #777; z-index: 2; left: 0px; display: none;"></div>
-                    <!---->
                     <div id="Layer2" align="center" style="position: absolute; z-index: 3; left: expression_r((document.body.offsetWidth-540)/2); top: expression_r((document.body.offsetHeight-170)/10); background-color: #fff; display: none;" >
                     </div>
                 </div>

@@ -49,6 +49,20 @@ exports.update = function(req, res) {
 	}
 };
 
+exports.changeFriendStatus = function(req, res) {
+
+  req.user.friends.push(req.profile._id);
+  req.user.save(function(err){
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(req.user);
+    }
+  })
+};
+
 /**
  * Send User
  */
@@ -99,3 +113,7 @@ exports.savePic = function(req, res){
 	console.log(req.body);
 };
 
+
+exports.getFriendList = function(req, res) {
+  res.json(req.profile.friends);
+};

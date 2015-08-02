@@ -17,6 +17,9 @@ module.exports = function(app) {
   	app.route('/user/:userId/upvote').put(users.upvote);
   	app.route('/user/:userId/upvoteList').post(users.addToUpvote);
   	app.route('/user/:userId/pic').post(users.savePic);
+  	app.route('/users/:userId').get(users.getUserProfile);
+  	app.route('/users/:userId/add_friend').post(users.changeFriendStatus);
+  	app.route('/users/:userId/friends').get(users.getFriendList);
 
 
 	// Setting up the users password api
@@ -56,6 +59,7 @@ module.exports = function(app) {
 	// Setting the github oauth routes
 	app.route('/auth/github').get(passport.authenticate('github'));
 	app.route('/auth/github/callback').get(users.oauthCallback('github'));
+
 
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);
