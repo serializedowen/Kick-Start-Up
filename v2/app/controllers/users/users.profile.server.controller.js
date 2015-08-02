@@ -57,8 +57,8 @@ exports.me = function(req, res) {
 };
 
 exports.getUserProfile = function(req, res) {
-  res.json(req.user);
-};
-exports.getUserArticles = function(req, res){
 
-}
+  console.log("here");
+  console.log(req.profile);
+  res.json(req.profile);
+};

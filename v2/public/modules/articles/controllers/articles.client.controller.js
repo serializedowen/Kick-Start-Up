@@ -75,9 +75,7 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
     }
 
 		$scope.findOne = function() {
-			$scope.article = Articles.get({
-				articleId: $stateParams.articleId
-			});
+			$scope.article = Articles.get({articleId: $stateParams.articleId});
 		};
 	}
 ]);

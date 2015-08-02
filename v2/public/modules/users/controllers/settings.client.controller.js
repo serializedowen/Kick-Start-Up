@@ -79,5 +79,12 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
       	});
       	console.log(result);
     };
-	}
+      //$scope.userProfile = UserProfile.get({userId: $stateParams.userId});
+
+      $http.get('/user/' + $stateParams.userId).success(function(data){
+        $scope.userProfile = data;
+      }).error(function(err){
+
+      });
+    };
 ]);
