@@ -127,17 +127,15 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
     $scope.liked = function(){
     	for (var n =0;n < $scope.user.upvoteList.length; n++){
     		if($scope.user.upvoteList[n] == $stateParams.userId){
-    			console.log("true");
     			return true;
     		};
     	};
-    	console.log("false");
     	return false;
     };
     $scope.savePic = function(picture){
     	console.log(picture);
     	$http.post('/user/' + $stateParams.userId + '/pic', picture).success(function(){
-    		console.log("coolie");
+
     	});
     };
     $scope.currentUser = function(){
