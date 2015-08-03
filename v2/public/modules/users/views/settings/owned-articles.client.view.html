@@ -1,0 +1,7 @@
+<section class="row" data-ng-controller="SettingsController" data-ng-init="findOne()">
+<div ng-init="result = findArticles()">
+        <div ng-repeat='n in result'>
+            <a href="/#!/articles/{{n._id}}" class="btn btn-primary" role="button">{{n.title}}</a>
+        </div>
+</div>
+</section>
