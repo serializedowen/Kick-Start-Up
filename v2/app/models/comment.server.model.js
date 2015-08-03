@@ -24,9 +24,9 @@ var CommentSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
-  article: [{
+  article: {
     type: Schema.ObjectId,
     ref: 'Article'
-  }]
+  }
 });
 mongoose.model('Comment', CommentSchema);

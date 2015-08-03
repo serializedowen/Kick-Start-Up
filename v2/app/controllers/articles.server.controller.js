@@ -15,25 +15,26 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res) {
 	var article = new Article(req.body);
 	article.user = req.user;
-
 	article.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			console.log(article.user);
 			res.json(article);
 		}
 	});
-	//console.log(article.user._id);
 };
 
 /**
  * Show the current article
  */
 exports.read = function(req, res) {
-  res.json(req.article);
+  var article = req.article;
+  article.comments = req.comments;
+
+  console.log(article);
+  res.json(article);
 };
 
 /**
@@ -95,11 +96,11 @@ exports.articleByID = function(req, res, next, id) {
 		if (err) return next(err);
 		if (!article) return next(new Error('Failed to load article ' + id));
 		req.article = article;
+
 		next();
 	});
 };
 exports.articleByAuthor = function(req, res, next, id) {
-	console.log(id);
 	Article.find({'user' : id}).exec(function(err, article) {
 		if (err) return next(err);
 		if (!article) return next(new Error('Failed to load article ' + id));
@@ -185,14 +186,15 @@ exports.upvote = function(req, res) {
   })
 };
 
-exports.commentList = function(req, res){
+exports.commentList = function(req, res, next){
   Comment.find({'article': req.article._id}).populate('user', 'displayName').exec(function(err, comments) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(comments);
+      req.comments = comments;
+      next();
     }
   })
 };
@@ -203,13 +205,24 @@ exports.getComment = function(req, res){
 };
 
 exports.addComment = function(req, res){
-  var comment = new Comment();
-}
+  var comment = new Comment(req.body);
+  comment.article = req.article._id;
+  comment.user = req.user._id;
+  comment.save(function(err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else{
+      res.json(comment);
+    }
+  });
 
+};
 exports.commentByID = function(req, res, next, id){
-  Comment.findById(id).populate('user', 'displayName').exec(function(err, comment) {
+  Comment.findById(id).populate('user', 'displayName', 'content').exec(function(err, comment) {
     if (err) return next(err);
-    if (!comments) return next(new Error('Failed to load comment ' + id));
+    if (!comment) return next(new Error('Failed to load comment ' + id));
     req.comment = comment;
     next();
   });

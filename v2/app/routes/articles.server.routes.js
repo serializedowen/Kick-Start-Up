@@ -12,17 +12,16 @@ module.exports = function(app) {
 		.get(articles.list)
 		.post(users.requiresLogin, articles.create);
 
+
+  app.route('/articles/:articleId/add_comment').post(users.requiresLogin, articles.addComment);
+  app.route('articles/:articleId/:commentId').get(articles.getComment);
   app.route('/articles/:articleId/upvote').post(users.requiresLogin, articles.upvote);
   app.route('/articles/:articleId/apply')
     .post(users.requiresLogin, articles.applyForJob)
     .delete(users.requiresLogin, articles.unapplyForJob);
 
-  app.route('articles/:articleId/:commentId')
-    .get(articles.getComment)
-    .post(users.requiresLogin, articles.addComment);
-
   app.route('/articles/:articleId')
-		.get(articles.read, articles.commentList)
+		.get(articles.commentList, articles.read)
 		.put(users.requiresLogin, articles.hasAuthorization, articles.update)
 		.delete(users.requiresLogin, articles.hasAuthorization, articles.delete);
 	app.route('/articles/man/:personId')

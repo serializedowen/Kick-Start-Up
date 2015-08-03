@@ -1,9 +1,8 @@
 'use strict';
 
-angular.module('articles').controller('ArticlesController', ['$scope', '$http', '$stateParams', '$location', 'Authentication', 'Articles',
-	function($scope, $http, $stateParams, $location, Authentication, Articles) {
+angular.module('articles').controller('ArticlesController', ['$scope', '$http', '$stateParams', '$location', 'Authentication', 'Articles', '$modal', '$log',
+	function($scope, $http, $stateParams, $location, Authentication, Articles, $modal, $log) {
 		$scope.authentication = Authentication;
-
 		$scope.create = function() {
 			var article = new Articles({
 				title: this.title,
@@ -18,6 +17,37 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
 				$scope.error = errorResponse.data.message;
 			});
 		};
+
+    $scope.createComment = function () {
+      var modalInstance = $modal.open({
+        size: 'md',
+        templateUrl: 'modules/articles/views/create-comment.client.view.html',
+        controller: function ($scope, $stateParams, $modalInstance, $http, user, article) {
+          $scope.user = user;
+          $scope.article = article;
+          $scope.submit = function(){
+            $http.post('/articles/' + $stateParams.articleId + '/add_comment', $scope.comment).success(function(data){
+              $http.get('/articles/' + $stateParams.articleId).success(function(data){
+                $modalInstance.close(data);
+              })
+            });
+          };
+        },
+        resolve: {
+          user: function () {
+            return $scope.authentication.user;
+          },
+          article: function(){
+            return $scope.articles;
+          }
+        }
+      });
+
+      modalInstance.result.then(function(article) {
+        $scope.article = article;
+      });
+    };
+
 
 		$scope.remove = function(article) {
 			if (article) {

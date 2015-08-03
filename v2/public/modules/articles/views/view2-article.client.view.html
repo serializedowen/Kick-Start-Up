@@ -92,31 +92,13 @@
                       </button>
 
                       <!-- Button trigger modal -->
-                      <button style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:8px 0px;font-size:13px;width:20%;text-align:center;flex:0 0 20%;background:#14283D;" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                      <button ng-click="createComment()" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:8px 0px;font-size:13px;width:20%;text-align:center;flex:0 0 20%;background:#14283D;" type="button" class="btn btn-primary btn-lg">
                           <img src="modules/core/img/element/employee.png" style="width:30px;height:30px;"></img>
                           <p style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:10px;font-size:18px;direction:ltr;color:white;font-family:'Open Sans';">Comments</p>
                           <span style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:60px;background:white;height:2px;display:block;margin:0 auto;"></span>
-                          <p style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;font-size:30px;color:white;font-family:'Open Sans';font-weight:bold;">{{article.members.length}}</p>
+                          <p style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;font-size:30px;color:white;font-family:'Open Sans';font-weight:bold;">{{article.comments.length}}</p>
                           <i style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;vertical-align:middle;font-size:40px;color:white;"></i>
                       </button>
-                          <!-- Modal -->
-                          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                              <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                      <div class="modal-header">
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                                      </div>
-                                      <div class="modal-body">
-                                          ...
-                                      </div>
-                                      <div class="modal-footer">
-                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-primary">Save changes</button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
                   </div>
               </div>
             </div>
@@ -154,5 +136,8 @@
             </div>
 
         </div>
+
+    <div ng-repeat="comment in article.comments">
+        <a>{{comment.content}}</a>
     </div>
 </section>

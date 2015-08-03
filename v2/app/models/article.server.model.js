@@ -50,11 +50,7 @@ var ArticleSchema = new Schema({
     type: Number,
     default: 0
   },
-  comments: [{
-    type: Schema.ObjectId,
-    ref: 'Comment',
-    default: []
-  }]
+  comments: []
 });
 
 mongoose.model('Article', ArticleSchema);

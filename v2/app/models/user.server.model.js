@@ -104,13 +104,12 @@ var UserSchema = new Schema({
 	},
 	upvoteList: [{
     type: Schema.ObjectId,
-    ref: 'User'}],
-
-    profilePic: { 
-    	data: Buffer, 
-    	contentType: String
-    }
-
+    ref: 'User'
+  }],
+  profilePic: {
+  	data: Buffer,
+  	contentType: String
+  }
 });
 
 /**
