@@ -109,6 +109,10 @@ var UserSchema = new Schema({
   profilePic: {
   	data: Buffer,
   	contentType: String
+  },
+  job:{
+    type: String,
+    default: 'No job'
   }
 });
 
