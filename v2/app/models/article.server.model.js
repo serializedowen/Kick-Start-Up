@@ -19,8 +19,8 @@ var ArticleSchema = new Schema({
 
   endDate: {
     type: Date,
-    default: (Date.now() + 5.184e+9)
-    //required: 'End Date cannot be null.'
+    default: (Date.now() + 1.296e+9)
+    // defaulted to be 15 days.
   },
 	title: {
 		type: String,
