@@ -13,13 +13,13 @@ module.exports = function(app) {
 	app.route('/users/me').get(users.me);
 	app.route('/users').put(users.update);
 	app.route('/users/accounts').delete(users.removeOAuthProvider);
-  	app.route('/users/:userId').get(users.getUserProfile);
-  	app.route('/user/:userId/upvote').put(users.upvote);
-  	app.route('/user/:userId/upvoteList').post(users.addToUpvote);
-  	app.route('/user/:userId/pic').post(users.savePic);
-  	app.route('/users/:userId').get(users.getUserProfile);
-  	app.route('/users/:userId/add_friend').post(users.changeFriendStatus);
-  	app.route('/users/:userId/friends').get(users.getFriendList);
+  app.route('/users/:userId').get(users.getUserProfile);
+  app.route('/user/:userId/upvote').put(users.upvote);
+  app.route('/user/:userId/upvoteList').post(users.addToUpvote);
+  app.route('/user/:userId/pic').post(users.savePic);
+  app.route('/users/:userId').get(users.getUserProfile);
+  app.route('/users/:userId/add_friend').post(users.changeFriendStatus);
+  app.route('/users/:userId/friends').get(users.getFriendList);
 
 
 	// Setting up the users password api

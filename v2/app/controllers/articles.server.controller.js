@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Article = mongoose.model('Article'),
+  Comment = mongoose.model('Comment'),
 	_ = require('lodash');
 
 /**
@@ -182,4 +183,34 @@ exports.upvote = function(req, res) {
       res.json(req.article);
     }
   })
+};
+
+exports.commentList = function(req, res){
+  Comment.find({'article': req.article._id}).populate('user', 'displayName').exec(function(err, comments) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(comments);
+    }
+  })
+};
+
+
+exports.getComment = function(req, res){
+  res.json(req.comment);
+};
+
+exports.addComment = function(req, res){
+  var comment = new Comment();
+}
+
+exports.commentByID = function(req, res, next, id){
+  Comment.findById(id).populate('user', 'displayName').exec(function(err, comment) {
+    if (err) return next(err);
+    if (!comments) return next(new Error('Failed to load comment ' + id));
+    req.comment = comment;
+    next();
+  });
 };

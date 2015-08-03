@@ -27,14 +27,14 @@
                         status: <font color="green" ng-show="parse() > 0">OPEN</font><font color="red" ng-show="parse() < 0">CLOSE</font>
                         </li>
 
-                    <li ng-show="authentication.user._id != article.user._id && !applied()" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;text-align:center;padding:0 10px;">
+                    <li ng-show="authentication.user._id != article.user._id && !applied()" style="cursor:pointer;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;text-align:center;padding:0 10px;">
                         <a ng-click="applyForJob()" class="button" class="btn btn-success btn-block" style='display: inline-block;height: 50px;line-height: 50px;padding-right: 30px;padding-left: 70px;position: relative;background-color:rgb(41,127,184);color:rgb(255,255,255);text-decoration: none;text-transform: uppercase;letter-spacing: 1px;margin-bottom: 15px;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;text-shadow:0px 1px 0px rgba(0,0,0,0.5);-ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=1,Color=#ff123852,Positive=true)";zoom:1;filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=1,Color=#ff123852,Positive=true);-moz-box-shadow:0px 2px 2px rgba(0,0,0,0.2);-webkit-box-shadow:0px 2px 2px rgba(0,0,0,0.2);box-shadow:0px 2px 2px rgba(0,0,0,0.2);-ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#33000000,Positive=true)";filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#33000000,Positive=true);'>
                             <span style="position: absolute;left: 0;width: 50px;background-color:rgba(0,0,0,0.5);-webkit-border-top-left-radius: 5px;-webkit-border-bottom-left-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-bottomleft: 5px;border-top-left-radius: 5px;border-bottom-left-radius: 5px;border-right: 1px solid  rgba(0,0,0,0.15);">
                                 &#10003;
                             </span>
                             Apply to join project</a>
                     </li>
-                    <li ng-show="authentication.user._id != article.user._id && applied()" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;text-align:center;padding:0 10px;">
+                    <li ng-show="authentication.user._id != article.user._id && applied()" style="cursor:pointer;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;text-align:center;padding:0 10px;">
                         <a ng-click="unapplyForJob()" class="button" class="btn btn-success btn-block" style='display: inline-block;height: 50px;line-height: 50px;padding-right: 30px;padding-left: 70px;position: relative;background-color:rgb(41,127,184);color:rgb(255,255,255);text-decoration: none;text-transform: uppercase;letter-spacing: 1px;margin-bottom: 15px;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;text-shadow:0px 1px 0px rgba(0,0,0,0.5);-ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=1,Color=#ff123852,Positive=true)";zoom:1;filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=1,Color=#ff123852,Positive=true);-moz-box-shadow:0px 2px 2px rgba(0,0,0,0.2);-webkit-box-shadow:0px 2px 2px rgba(0,0,0,0.2);box-shadow:0px 2px 2px rgba(0,0,0,0.2);-ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#33000000,Positive=true)";filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=2,Color=#33000000,Positive=true);'>
                             <span style="position: absolute;left: 0;width: 50px;background-color:rgba(0,0,0,0.5);-webkit-border-top-left-radius: 5px;-webkit-border-bottom-left-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-bottomleft: 5px;border-top-left-radius: 5px;border-bottom-left-radius: 5px;border-right: 1px solid  rgba(0,0,0,0.15);">
                                 &#10003;
@@ -59,7 +59,7 @@
               <div style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;font-size:13px;width:100% !important;display:table;min-height:1px;position:relative;">
                   <div style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;font-size:13px;display:flex;flex-direction:row;flex-wrap:wrap;">
 
-                      <button ng-click="thumbsup()"style="visibility:visible;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:8px 0px;font-size:13px;width:25%;text-align:center;flex:0 0 25%;background:#1C3753;">
+                      <button ng-click="thumbsup()"style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:8px 0px;font-size:13px;width:20%;text-align:center;flex:0 0 20%;background:#1C3753;">
                         <img src="modules/core/img/element/like.png" style="width:30px;height:30px;color:rgb(23, 44, 66);"></img>
                         <p style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:10px;font-size:18px;color:white;font-family:'Open Sans';">Thumbs Up</p>
                         <span style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:60px;background:white;height:2px;display:block;margin:0 auto;"></span>
@@ -67,7 +67,7 @@
                         <i style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;vertical-align:middle;font-size:40px;color:rgbawhite;"></i>
                       </button>
 
-                      <button style="visibility:visible;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:8px 0px;font-size:13px;width:25%;text-align:center;flex:0 0 25%;background:#19324B;">
+                      <button style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:8px 0px;font-size:13px;width:20%;text-align:center;flex:0 0 20%;background:#19324B;">
                         <img src="modules/core/img/element/comments.png" style="width:30px;height:30px;"></img>
                         <p style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:10px;font-size:18px;color:white;font-family:'Open Sans';">Applicants</p>
                         <span style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:60px;background:white;height:2px;display:block;margin:0 auto;"></span>
@@ -75,7 +75,7 @@
                         <i style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;vertical-align:middle;font-size:40px;color:white;"></i> 
                       </button>
 
-                      <button style="visibility:visible;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:8px 0px;font-size:13px;width:25%;text-align:center;flex:0 0 25%;background:#162D44;">
+                      <button style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:8px 0px;font-size:13px;width:20%;text-align:center;flex:0 0 20%;background:#162D44;">
                         <img src="modules/core/img/element/employee.png" style="width:30px;height:30px;"></img>
                         <p style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:10px;font-size:18px;direction:ltr;color:white;font-family:'Open Sans';">Members</p>
                         <span style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:60px;background:white;height:2px;display:block;margin:0 auto;"></span>
@@ -83,13 +83,40 @@
                         <i style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;vertical-align:middle;font-size:40px;color:white;"></i>                
                       </button>
 
-                      <button style="visibility:visible;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:8px 0px;font-size:13px;width:25%;text-align:center;flex:0 0 25%;background:#14283D;">
+                      <button style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:8px 0px;font-size:13px;width:20%;text-align:center;flex:0 0 20%;background:#14283D;">
                         <img src="modules/core/img/element/sandglass.png" style="width:30px;height:30px;margin-top:8px;"></img>
-                        <p style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:10px;font-size:18px;color:white;font-family:'Open Sans';">Remaining Days</p>
+                        <p style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:10px;font-size:18px;color:white;font-family:'Open Sans';">Days Left</p>
                         <span style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:60px;background:white;height:2px;display:block;margin:0 auto;"></span>
                         <p style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;font-size:30px;color:white;font-family:'Open Sans';font-weight:bold;">{{parse() | millSecondsToTimeString}}</p>
                         <i style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;vertical-align:middle;font-size:40px;color:white;"></i>  
                       </button>
+
+                      <!-- Button trigger modal -->
+                      <button style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:8px 0px;font-size:13px;width:20%;text-align:center;flex:0 0 20%;background:#14283D;" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                          <img src="modules/core/img/element/employee.png" style="width:30px;height:30px;"></img>
+                          <p style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:10px;font-size:18px;direction:ltr;color:white;font-family:'Open Sans';">Comments</p>
+                          <span style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:60px;background:white;height:2px;display:block;margin:0 auto;"></span>
+                          <p style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;font-size:30px;color:white;font-family:'Open Sans';font-weight:bold;">{{article.members.length}}</p>
+                          <i style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;vertical-align:middle;font-size:40px;color:white;"></i>
+                      </button>
+                          <!-- Modal -->
+                          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                      </div>
+                                      <div class="modal-body">
+                                          ...
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                          <button type="button" class="btn btn-primary">Save changes</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
                   </div>
               </div>
             </div>
