@@ -129,6 +129,30 @@ exports.articleByApplicant = function(req, res, next, id){
 
 };
 
+exports.articleByMember = function(req, res, next, id){
+	var article = [];
+	console.log("here");
+	var articles = Article.find().exec(function(err, articles) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			for (var x in articles){
+				for (var n = 0; n < articles[x].members.length; n++){
+					console.log(articles[x].members[n]);
+					if(articles[x].members[n] == id){
+						article.push(articles[x]);
+				};
+			};
+		};
+			req.article = article;
+			next();
+		}
+	});
+
+};
+
 /**
  * Article authorization middleware
  */
@@ -146,6 +170,21 @@ exports.applyForJob = function(req, res) {
 
   req.article.applicants.push(req.user.id);
   req.article.save(function(err){
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(article);
+    }
+  })
+};
+
+exports.acceptApplication = function(req, res){
+	var article = req.article;
+	article.members.push(req.body.ids);
+	req.article.applicants.remove(req.user.id);
+	article.save(function(err){
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

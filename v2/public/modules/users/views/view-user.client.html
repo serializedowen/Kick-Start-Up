@@ -116,6 +116,10 @@
                 Likes
                 <strong style="margin:0;padding:0;color:#434343;display:block;font-size:2.2em;line-height:1.1em;font-weight:bold;">{{profile.upvote}}</strong>
             </li>
+            <li style="margin:0;padding:0;border:0px !important;width:95px;float:left;display:block;padding-left:8px;height:50px;border-right:1px dotted #bbb;text-transform:uppercase;">
+                Members of
+                <strong style="margin:0;padding:0;color:#434343;display:block;font-size:2.2em;line-height:1.1em;font-weight:bold;" ng-init="result1 = findAllMember()">{{result1.length}}</strong>
+            </li>
             <div style="float: right; float: bottom">
                 <button type="submit" class="btn btn-primary">Upload Resume</button>
             </div>
@@ -156,7 +160,10 @@
         <a href="/#!/settings/myArticles/{{profile._id}}" class="btn btn-primary" role="button">View Posts</a>
     </div>
     <div>
-        <a href="/#!/settings/myApplied/{{profile._id}}" class="btn btn-primary" role="button">View Applications</a>
+        <a href="/#!/settings/myApplied/{{profile._id}}" class="btn btn-primary" role="button" ng-show="myProfile()">View Applications</a>
+    </div>
+    <div>
+        <a href="/#!/settings/myMember/{{profile._id}}" class="btn btn-primary" role="button">My Memberships</a>
     </div>
 
 </section>

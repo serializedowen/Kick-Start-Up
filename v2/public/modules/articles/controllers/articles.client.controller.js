@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('articles').controller('ArticlesController', ['$scope', '$http', '$stateParams', '$location', 'Authentication', 'Articles',
-	function($scope, $http, $stateParams, $location, Authentication, Articles) {
+angular.module('articles').controller('ArticlesController', ['$scope', '$http', '$stateParams', '$location', 'Authentication', 'Articles','Users',
+	function($scope, $http, $stateParams, $location, Authentication, Articles, Users) {
 		$scope.authentication = Authentication;
 
 		$scope.create = function() {
@@ -46,7 +46,8 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
 
     $scope.applyForJob = function() {
       var article = $scope.article;
-      //console.log(article.applicants);
+      //console.log(article.applicants)
+      console.log("here");
       $http.post('/articles/' + $scope.article._id + '/apply').success(function(data){
         $scope.article = data;
       });
@@ -62,9 +63,37 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
 		$scope.find = function() {
       $scope.articles = Articles.query();
     };
+    $scope.acceptJob = function(id){
+    	var x = {ids: id};
+    	var article = $scope.article;
+    	$http.post('/article/accept/' + $scope.article._id, x).success(function(data){
+        	$scope.article = data;
+      });
+    };
+    $scope.getNames = function(id){
+    	$scope.name = [];
+    	for (var p = 0; p < id.length; p++){
+    		$http.get('/users/' + id).success(function(data){
+    			console.log(data.firstName);
+    			$scope.name.push(data);
+    		});
+    	};
+    };
+
 
     $scope.applied = function(){
       var la = $scope.article.applicants;
+      for (var n in la){
+        if (la[n] === Authentication.user._id){
+          return true;
+        }
+      }
+      return false;
+    };
+
+    $scope.member = function(){
+      var la = $scope.article.members;
+      console.log(la);
       for (var n in la){
         if (la[n] === Authentication.user._id){
           return true;

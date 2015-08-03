@@ -17,14 +17,19 @@
 		</a>
 	</div>
 
-    <div class="pull-right" data-ng-show="authentication.user._id != article.user._id && !applied()">
+    <div class="pull-right" data-ng-show="authentication.user._id != article.user._id && !applied() && !member()">
         <a class="btn btn-primary" ng-click="applyForJob()">Apply!
             <i class="glyphicon glyphicon-check"></i>
         </a>
     </div>
 
-    <div class="pull-right" data-ng-show="authentication.user._id != article.user._id && applied()">
+    <div class="pull-right" data-ng-show="authentication.user._id != article.user._id && applied() && !member()">
         <a class="btn btn-primary" ng-click="unapplyForJob()">Unapply!
+            <i class="glyphicon glyphicon-unchecked"></i>
+        </a>
+    </div>
+    <div class="pull-right" data-ng-show="member()">
+        <a class="btn btn-primary" >Member!
             <i class="glyphicon glyphicon-unchecked"></i>
         </a>
     </div>

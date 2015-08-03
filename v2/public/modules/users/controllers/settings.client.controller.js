@@ -118,6 +118,16 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
         	};
       	});
     };
+    $scope.findAllMember = function(){
+      console.log("here");
+      $http.get('/article/member/'+$stateParams.userId).success(function(data){
+          $scope.result1 = data;
+          console.log($scope.result);
+          for (var n in $scope.result){
+            console.log($scope.result[n]);
+          };
+      });
+    };
     $scope.upvote = function(){
     	$http.put('/user/'+$stateParams.userId+'/upvote').success(function(){
     		$scope.profile.upvote += 1;
@@ -141,6 +151,9 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
     	$http.post('/user/' + $stateParams.userId + '/pic', picture).success(function(){
     		console.log("coolie");
     	});
+    };
+    $scope.currentUser = function(){
+      return Authentication.user.firstName;
     };
     }
 ]);
