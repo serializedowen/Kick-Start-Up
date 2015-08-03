@@ -76,8 +76,7 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
 
     $scope.applyForJob = function() {
       var comments = $scope.article.comments;
-      //console.log(article.applicants)
-      console.log("here");
+
       $http.post('/articles/' + $scope.article._id + '/apply').success(function(data){
         $scope.article = data;
         $scope.article.comments = comments;
@@ -100,9 +99,11 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
     	var x = {ids: id};
     	var article = $scope.article;
       var comments = article.comments;
-    	$http.post('/article/accept/' + $scope.article._id, x).success(function(data){
+    	$http.post('/articles/' + article._id + '/accept', x).success(function(data){
         $scope.article = data;
-        $scope.article.comments = comments
+        $scope.article.comments = comments;
+
+        getNames($scope.article.applicants);
       });
     };
     $scope.getNames = function(id){

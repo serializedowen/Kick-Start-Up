@@ -51,6 +51,10 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 		state('search_bar', {
 			url: '/search_bar',
 			templateUrl: 'modules/core/views/search_bar.html'
-		})
+		}).
+    state('admin', {
+        url: '/admin',
+        templateUrl: 'modules/core/views/admin_page.html'
+      })
 	}
 ]);

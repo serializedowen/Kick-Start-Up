@@ -31,7 +31,7 @@ module.exports = function(app) {
 	app.route('/article/member/:memberId')
 		.get(articles.read);
 	// Finish by binding the article middleware
-	app.route('/article/accept/:articleId')
+	app.route('/articles/:articleId/accept')
 		.post(users.requiresLogin, articles.acceptApplication);
 
 	app.param('memberId', articles.articleByMember);
