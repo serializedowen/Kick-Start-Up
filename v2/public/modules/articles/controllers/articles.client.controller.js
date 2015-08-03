@@ -96,13 +96,17 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
       $scope.articles = Articles.query();
     };
 
-    $scope.acceptJob = function(id){
+    $scope.acceptJob = function(id, name){
     	var x = {ids: id};
     	var article = $scope.article;
       var comments = article.comments;
     	$http.post('/article/accept/' + $scope.article._id, x).success(function(data){
         $scope.article = data;
-        $scope.article.comments = comments
+        $scope.article.comments = comments;
+        var index = $scope.name.indexOf(id);
+    	if (index > -1) {
+ 			$scope.name.splice(index, 1);
+		}
       });
     };
     $scope.getNames = function(id){

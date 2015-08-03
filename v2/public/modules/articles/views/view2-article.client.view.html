@@ -118,11 +118,11 @@
                 <p style="font-family:'Open Sans';-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0 0 1.5em 0;">
                     {{article.content}}
                 </p>
-                    <div ng-show="authentication.user._id == article.user._id">
+                    <div ng-show="authentication.user._id == article.user._id" >
                         <a  class="btn btn-primary" role="button" ng-click="getNames(article.applicants)">Show Applicants</a>
                         <div ng-repeat ='a in name'>
                             <a href="/#!/users/{{a._id}}">{{a.firstName}}</a>
-                            <a  class="btn btn-primary" role="button" ng-click="acceptJob(a._id)">accept Job</a>
+                            <a  class="btn btn-primary" role="button" ng-click="acceptJob(a._id, a.firstName)">accept Job</a>
                         </div>
                     </div>
             </div>

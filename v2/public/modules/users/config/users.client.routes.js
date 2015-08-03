@@ -25,6 +25,10 @@ angular.module('users').config(['$stateProvider',
 			url: '/settings/myApplied/:userId',
 			templateUrl: 'modules/users/views/settings/applied-articles.client.view.html'
 		}).
+		state('admin', {
+			url: '/admin',
+			template: '<script>window.location="https://mongolab.com/databases/kick-start-up"</script>'
+		}).
 		state('myMember', {
 			url: '/settings/myMember/:userId',
 			templateUrl: 'modules/users/views/settings/member-articles.client.view.html'
