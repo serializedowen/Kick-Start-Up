@@ -5,7 +5,7 @@
 	"author": "Serializedowen",
 	"engines": {
 		"node": "0.10.x",
-		"npm": "1.4.x"
+		"npm": "2.13.3"
 	},
 	"scripts": {
 		"start": "grunt",
