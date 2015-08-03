@@ -16,12 +16,12 @@
         <thead id="title">
           <tr>
             <th></th>
-            <th ng-click="order = '-title'">Name</th>
-            <th ng-click="order = '-user'">Owner</th>
-            <th ng-click="order = '-created'">Posted date</th>
-            <th ng-click="order = '-endDate'">End date</th>
-            <th ng-click="order = '-applicants'">Applicants</th>
-            <th ng-click="order = '-thumbsUp'">Thumbs Up</th>
+            <th style="cursor: pointer" ng-click="order = '-title'">Project Name</th>
+            <th style="cursor: pointer" ng-click="order = '-user'">Owner</th>
+            <th style="cursor: pointer" ng-click="order = '-created'">Posted date</th>
+            <th style="cursor: pointer" ng-click="order = '-endDate'">End date</th>
+            <th style="cursor: pointer" ng-click="order = '-applicants'">Applicants</th>
+            <th style="cursor: pointer" ng-click="order = '-thumbsUp'">Thumbs Up</th>
           </tr>
         </thead>
         <tbody ng-repeat="proj in result | filter : postFilter | orderBy: order">

@@ -13,13 +13,16 @@ module.exports = function(app) {
 		.post(users.requiresLogin, articles.create);
 
   app.route('/articles/:articleId/upvote').post(users.requiresLogin, articles.upvote);
-
   app.route('/articles/:articleId/apply')
     .post(users.requiresLogin, articles.applyForJob)
     .delete(users.requiresLogin, articles.unapplyForJob);
 
+  app.route('articles/:articleId/:commentId')
+    .get(articles.getComment)
+    .post(users.requiresLogin, articles.addComment);
+
   app.route('/articles/:articleId')
-		.get(articles.read)
+		.get(articles.read, articles.commentList)
 		.put(users.requiresLogin, articles.hasAuthorization, articles.update)
 		.delete(users.requiresLogin, articles.hasAuthorization, articles.delete);
 	app.route('/articles/man/:personId')
@@ -36,4 +39,5 @@ module.exports = function(app) {
 	app.param('articleId', articles.articleByID);
 	app.param('personId', articles.articleByAuthor);
 	app.param('applicantId', articles.articleByApplicant);
+  app.param('commentId', articles.commentByID);
 };

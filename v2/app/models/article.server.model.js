@@ -49,8 +49,12 @@ var ArticleSchema = new Schema({
   thumbsUp: {
     type: Number,
     default: 0
-  }
-
+  },
+  comments: [{
+    type: Schema.ObjectId,
+    ref: 'Comment',
+    default: []
+  }]
 });
 
 mongoose.model('Article', ArticleSchema);
