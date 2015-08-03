@@ -1,7 +1,8 @@
 <section class="row" data-ng-controller="SettingsController" data-ng-init="findOne()">
-<div ng-init="result = findArticles()">
-        <div ng-repeat='n in result'>
-            <a href="/#!/articles/{{n._id}}" class="btn btn-primary" role="button">{{n.title}}</a>
-        </div>
-</div>
+<h3 class="col-md-12 text-center">Posts by {{profile.firstname}}</h3>
+	<div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2" ng-init="result = findArticles()">
+    	    <div ng-repeat='n in result'>
+        	    <a href="/#!/articles/{{n._id}}" class="btn btn-primary" role="button">{{n.title}}</a>
+        	</div>
+	</div>
 </section>
