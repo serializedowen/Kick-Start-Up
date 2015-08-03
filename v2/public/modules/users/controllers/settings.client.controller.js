@@ -139,7 +139,12 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
     	});
     };
     $scope.currentUser = function(){
-      return Authentication.user.firstName;
+      $http.get('/users/'+$stateParams.userId).success(function(data){
+        $scope.currentUser = data;
+      });
     };
+    $scope.currentId = function(){
+      return $stateParams.userId;
+    }
     }
 ]);
