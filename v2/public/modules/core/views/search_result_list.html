@@ -33,7 +33,7 @@
                     <a href="/#!/articles/{{proj._id}}" title="">{{proj.title}}</a>
                 </td>
                 <td>
-                    {{proj.user.displayName}}
+                    <a href="/#!/users/{{proj.user._id}}">{{proj.user.displayName}}</a>
                 </td>
                 <td>
                     <div class="project-date">{{proj.created | date:'mediumDate'}}</div>

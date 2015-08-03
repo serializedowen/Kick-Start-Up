@@ -103,29 +103,17 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
     	console.log($stateParams.userId);
     	$http.get('/articles/man/'+$stateParams.userId).success(function(data){
         	$scope.result = data;
-        	console.log($scope.result);
-        	for (var n in $scope.result){
-        		console.log($scope.result[n].user);
-        	};
       	});
     };
     $scope.findApplied = function(){
     	$http.get('/article/person/'+$stateParams.userId).success(function(data){
         	$scope.result = data;
-        	console.log($scope.result);
-        	for (var n in $scope.result){
-        		console.log($scope.result[n]);
-        	};
       	});
     };
     $scope.findAllMember = function(){
       console.log("here");
       $http.get('/article/member/'+$stateParams.userId).success(function(data){
           $scope.result1 = data;
-          console.log($scope.result);
-          for (var n in $scope.result){
-            console.log($scope.result[n]);
-          };
       });
     };
     $scope.upvote = function(){

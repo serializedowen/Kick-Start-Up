@@ -13,15 +13,15 @@
     <div id="collapsible-list-01" style="border: 0;padding: 0;" >
       <table class="table table-hover">
         <thead id="title">
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Owner</th>
-            <th>Posted date</th>
-            <th>End date</th>
-            <th>Applicants</th>
-            <th>Thumbs Up</th>
-          </tr>
+            <tr>
+                <th></th>
+                <th style="cursor: pointer" ng-click="order = '-title'">Project Name</th>
+                <th style="cursor: pointer" ng-click="order = '-user'">Owner</th>
+                <th style="cursor: pointer" ng-click="order = '-created'">Posted date</th>
+                <th style="cursor: pointer" ng-click="order = '-endDate'">End date</th>
+                <th style="cursor: pointer" ng-click="order = '-applicants'">Applicants</th>
+                <th style="cursor: pointer" ng-click="order = '-thumbsUp'">Thumbs Up</th>
+            </tr>
         </thead>
     <div ng-init="result = findApplied()">
         <tbody ng-repeat="proj in result ">
@@ -33,13 +33,13 @@
                     <a href="/#!/articles/{{proj._id}}" title="">{{proj.title}}</a>
                 </td>
                 <td>
-                    {{proj.user.displayName}}
+                    <a href="/#!/users/{{proj.user._id}}">{{proj.user.displayName}}</a>
                 </td>
                 <td>
-                    <div class="project-date">{{proj.created }}</div>
+                    <div class="project-date">{{proj.created | date:'mediumDate'}}</div>
                 </td>
                 <td>
-                    <div class="project-date">{{proj.endDate }}</div>
+                    <div class="project-date">{{proj.endDate | date:'mediumDate'}}</div>
                 </td>
                 <td>
                     {{proj.applicants.length}}

@@ -101,7 +101,7 @@ exports.articleByID = function(req, res, next, id) {
 	});
 };
 exports.articleByAuthor = function(req, res, next, id) {
-	Article.find({'user' : id}).exec(function(err, article) {
+	Article.find({'user' : id}).populate('user', 'displayName').exec(function(err, article) {
 		if (err) return next(err);
 		if (!article) return next(new Error('Failed to load article ' + id));
 		req.article = article;
@@ -111,7 +111,7 @@ exports.articleByAuthor = function(req, res, next, id) {
 
 exports.articleByApplicant = function(req, res, next, id){
 	var article = [];
-	var articles = Article.find().exec(function(err, articles) {
+	var articles = Article.find().populate('user', 'displayName').exec(function(err, articles) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -133,8 +133,7 @@ exports.articleByApplicant = function(req, res, next, id){
 
 exports.articleByMember = function(req, res, next, id){
 	var article = [];
-	console.log("here");
-	var articles = Article.find().exec(function(err, articles) {
+	Article.find().populate('user', 'displayName').exec(function(err, articles) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
