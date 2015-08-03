@@ -28,7 +28,13 @@ module.exports = function(app) {
 		.get(articles.read);
 	app.route('/article/person/:applicantId')
 		.get(articles.read);
+	app.route('/article/member/:memberId')
+		.get(articles.read);
 	// Finish by binding the article middleware
+	app.route('/article/accept/:articleId')
+		.post(users.requiresLogin, articles.acceptApplication);
+
+	app.param('memberId', articles.articleByMember);
 	app.param('articleId', articles.articleByID);
 	app.param('personId', articles.articleByAuthor);
 	app.param('applicantId', articles.articleByApplicant);
