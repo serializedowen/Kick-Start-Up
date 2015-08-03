@@ -1,11 +1,18 @@
 'use strict';
 
-angular.module('users').controller('SettingsController', ['$scope', '$stateParams', '$http', '$location', 'Users', 'Authentication', 'UserProfile',
-	function($scope, $stateParams, $http, $location, Users, Authentication, UserProfile) {
+angular.module('users').controller('SettingsController', ['$scope', '$stateParams', '$http', '$location', 'Users', 'Authentication', 'UserProfile', 'fileUpload',
+	function($scope, $stateParams, $http, $location, Users, Authentication, UserProfile, fileUpload) {
 		$scope.user = Authentication.user;
 
-		// If user is not signed in then redirect back home
 		if (!$scope.user) $location.path('/');
+
+    $scope.uploadFile = function(){
+        var file = $scope.myFile;
+        console.log('file is ' );
+        console.dir(file);
+        var uploadUrl = "/fileUpload";
+        fileUpload.uploadFileToUrl(file, uploadUrl);
+    };
 
 		// Check if there are additional accounts 
 		$scope.hasConnectedAdditionalSocialAccounts = function(provider) {
@@ -139,7 +146,12 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
     	});
     };
     $scope.currentUser = function(){
-      return Authentication.user.firstName;
+      $http.get('/users/'+$stateParams.userId).success(function(data){
+        $scope.currentUser = data;
+      });
     };
+    $scope.currentId = function(){
+      return $stateParams.userId;
+    }
     }
 ]);

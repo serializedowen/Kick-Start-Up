@@ -17,7 +17,9 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 			],
 			js: [
+				'public/lib/ng-file-upload/ng-file-upload-shim.min.js',
 				'public/lib/angular/angular.js',
+				'public/lib/ng-file-upload/ng-file-upload.min.js',
 				'public/lib/angular-resource/angular-resource.js', 
 				'public/lib/angular-cookies/angular-cookies.js', 
 				'public/lib/angular-animate/angular-animate.js', 

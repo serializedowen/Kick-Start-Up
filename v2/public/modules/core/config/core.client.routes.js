@@ -35,6 +35,10 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 		state('about_page', {
 			url: '/about_page',
 			templateUrl: 'modules/core/views/about_page.html'
-		})
+		}).
+    state('admin', {
+        url: '/admin',
+        templateUrl: 'modules/core/views/admin_page.html'
+      })
 	}
 ]);

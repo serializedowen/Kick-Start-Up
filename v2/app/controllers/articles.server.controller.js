@@ -184,7 +184,7 @@ exports.applyForJob = function(req, res) {
 exports.acceptApplication = function(req, res){
 	var article = req.article;
 	article.members.push(req.body.ids);
-	req.article.applicants.remove(req.user.id);
+	article.applicants.remove(req.body.ids);
 	article.save(function(err){
     if (err) {
       return res.status(400).send({
