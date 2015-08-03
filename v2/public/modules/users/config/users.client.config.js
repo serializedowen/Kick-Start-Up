@@ -26,5 +26,14 @@ angular.module('users').config(['$httpProvider',
 				};
 			}
 		]);
-	}
+	}.filter('millSecondsToDays', function() {
+      return function(millseconds) {
+        var seconds = Math.floor(millseconds / 1000);
+        var days = Math.floor(seconds / 86400);
+        var timeString = '';
+        if(days > 0) timeString += (days > 1) ? (days + " days ") : (days + " day ")
+        else timeString = '< 1 day.';
+        return timeString;
+      }
+    })
 ]);

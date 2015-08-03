@@ -16,15 +16,15 @@
         <thead id="title">
           <tr>
             <th></th>
-            <th>Name</th>
-            <th>Owner</th>
-            <th>Posted date</th>
-            <th>End date</th>
-            <th>Applicants</th>
-            <th>Thumbs Up</th>
+            <th ng-click="order = '-title'">Name</th>
+            <th ng-click="order = '-user'">Owner</th>
+            <th ng-click="order = '-created'">Posted date</th>
+            <th ng-click="order = '-endDate'">End date</th>
+            <th ng-click="order = '-applicants'">Applicants</th>
+            <th ng-click="order = '-thumbsUp'">Thumbs Up</th>
           </tr>
         </thead>
-        <tbody ng-repeat="proj in result | filter : postFilter">
+        <tbody ng-repeat="proj in result | filter : postFilter | orderBy: order">
             <tr>
                 <td>
                     <span class="project-status status-archived"></span>
@@ -45,7 +45,7 @@
                     {{proj.applicants.length}}
                 </td>
                 <td>
-                    placeholder
+                    {{proj.thumbsUp}}
                 </td>
             </tr>
 

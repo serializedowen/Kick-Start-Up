@@ -55,12 +55,11 @@
                             Web Developer/Desinger
                         </li>
                     </ul>
-                <a class="btn btn-primary" href="/#!/settings/profile" ng-show="myProfile()">Edit Profile</a>
+                <a class="btn btn-primary" href="/#!/settings/profile" style="float:right;width:15%;margin-right:10px" ng-show="myProfile()">Edit Profile</a>
                 <a class="btn btn-primary" ng-click="upvote()" ng-hide="liked()">Like!</a>
                 <a ng-show="liked()">Liked!</a>
-                <span>{{profile.upvote}}</span>
-                <a class="btn btn-primary" ng-click="changeFriendStatus()" ng-show="!myProfile() && !alreadyFriends()" style="float:left;width:30%;">Add Friend</a>
-                <a ng-show="alreadyFriends()" class="btn btn-primary" style="float:left;width:30%;">You two are friends!</a>
+                <a class="btn btn-primary" ng-click="changeFriendStatus()" ng-show="!myProfile() && !alreadyFriends()" style="float:right;width:15%;margin-right:10px">Add Friend</a>
+                <a ng-show="alreadyFriends()" class="btn btn-primary" style="float:right;width:15%;margin-right:10px">Friended!</a>
             </div>
             </div>
         </div>
@@ -114,8 +113,8 @@
                 <strong style="margin:0;padding:0;color:#434343;display:block;font-size:2.2em;line-height:1.1em;font-weight:bold;">{{profile.friends.length}}</strong>
             </li>
             <li style="margin:0;padding:0;border:0px !important;width:95px;float:left;display:block;padding-left:8px;height:50px;border-right:1px dotted #bbb;text-transform:uppercase;">
-                Member
-                <strong style="margin:0;padding:0;color:#434343;display:block;font-size:2.2em;line-height:1.1em;font-weight:bold;">127 </strong>
+                Likes
+                <strong style="margin:0;padding:0;color:#434343;display:block;font-size:2.2em;line-height:1.1em;font-weight:bold;">{{profile.upvote}}</strong>
             </li>
             <div style="float: right; float: bottom">
                 <button type="submit" class="btn btn-primary">Upload Resume</button>
