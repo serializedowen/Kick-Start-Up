@@ -118,28 +118,6 @@
                 <p style="font-family:'Open Sans';-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0 0 1.5em 0;">
                     {{article.content}}
                 </p>
-
-                <h2 style='-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin-top:0;font-family:"Open Sans", "Helvetica Neue", Arial, Helvetica, Sans-Serif;color:#444;font-size:1.5em;font-weight:800;line-height:1.2;padding-top:0.35em;margin-bottom:0.65em;'>
-                Skills Required
-                <span style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:150px;background:#444;height:2px;display:block;margin-top:-4px;"></span>
-                </h2>
-                    <ul>
-                        <li>
-                            <p style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0 0 1.5em 0;">
-                                Angular.js
-                            </p>
-                        </li>
-                        <li>
-                            <p style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0 0 1.5em 0;">
-                                 Express JS
-                            </p>
-                        </li>
-                        <li>
-                            <p style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0 0 1.5em 0;">
-                                node.js
-                            </p>
-                        </li>
-                    </ul>
                     <div ng-show="authentication.user._id == article.user._id">
                         <a  class="btn btn-primary" role="button" ng-click="getNames(article.applicants)">Show Applicants</a>
                         <div ng-repeat ='a in name'>
@@ -148,10 +126,21 @@
                         </div>
                     </div>
             </div>
-
         </div>
 
-    <div ng-repeat="comment in article.comments">
-        <a>{{comment.content}}</a>
+    <div class="row">
+        <div class="col-xs-12 col-md-offset-3 col-md-6">
+            <div class="list-group">
+                <a data-ng-repeat="comment in article.comments" class="list-group-item">
+                    <small class="list-group-item-text">
+                        Posted on
+                        <span data-ng-bind="comment.created | date:'mediumDate'"></span>
+                        by
+                        <span data-ng-bind="comment.user.displayName"></span>
+                    </small>
+                    <p class="list-group-item-text" data-ng-bind="comment.content"></p>
+                </a>
+            </div>
+        </div>
     </div>
 </section>

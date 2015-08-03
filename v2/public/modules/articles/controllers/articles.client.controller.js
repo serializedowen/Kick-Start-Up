@@ -75,29 +75,34 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
 		};
 
     $scope.applyForJob = function() {
-      var article = $scope.article;
+      var comments = $scope.article.comments;
       //console.log(article.applicants)
       console.log("here");
       $http.post('/articles/' + $scope.article._id + '/apply').success(function(data){
         $scope.article = data;
+        $scope.article.comments = comments;
       });
     };
 
     $scope.unapplyForJob = function() {
-      var article = $scope.article;
+      var comments = $scope.article.comments;
       $http.delete('/articles/' + $scope.article._id + '/apply').success(function(data){
         $scope.article = data;
+        $scope.article.comments = comments;
       });
     };
 
 		$scope.find = function() {
       $scope.articles = Articles.query();
     };
+
     $scope.acceptJob = function(id){
     	var x = {ids: id};
     	var article = $scope.article;
+      var comments = article.comments;
     	$http.post('/article/accept/' + $scope.article._id, x).success(function(data){
-        	$scope.article = data;
+        $scope.article = data;
+        $scope.article.comments = comments
       });
     };
     $scope.getNames = function(id){
@@ -109,7 +114,6 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
     		});
     	};
     };
-
 
     $scope.applied = function(){
       var la = $scope.article.applicants;
@@ -123,7 +127,6 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
 
     $scope.member = function(){
       var la = $scope.article.members;
-      console.log(la);
       for (var n in la){
         if (la[n] === Authentication.user._id){
           return true;
@@ -137,9 +140,10 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$http', 
 		};
 
     $scope.thumbsup = function() {
-      var article = $scope.article;
+      var comments = $scope.article.comments;
       $http.post('/articles/' + $scope.article._id + '/upvote').success(function(data){
         $scope.article = data;
+        $scope.article.comments = comments;
       });
     };
 
