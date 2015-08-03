@@ -144,7 +144,7 @@
                         <a  class="btn btn-primary" role="button" ng-click="getNames(article.applicants)">Show Applicants</a>
                         <div ng-repeat ='a in name'>
                             <a href="/#!/users/{{a._id}}">{{a.firstName}}</a>
-                            <a  class="btn btn-primary" role="button" ng-click="acceptJob(a)">accept Job</a>
+                            <a  class="btn btn-primary" role="button" ng-click="acceptJob(a._id)">accept Job</a>
                         </div>
                     </div>
             </div>
