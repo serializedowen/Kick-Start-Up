@@ -49,52 +49,51 @@
 		<section class="container">
             {% block content %}{% endblock %}
 		</section>
+    </section>
 
+        <div class="container">
         <!-- page footer begin -->
-        <div id="footer" class="footer" style="font:12pt Georgia;color:#f2f2f2;margin-top:60px;margin-bottom:-150px;clear:both;">
-            <div class="sloganWrap" style="position:relative; background:#0B86C3; box-shadow:2px 2px 3px rgba(0,0,0,0.5);">
-                <div id="slogan" style="text-align:center;margin:auto;width:500px;letter-space:2px;text-shadow:1px 1px 3px rgba(0,0,0,0.5);line-height:36px;font-size:46px">
+        <div id="footer" style="font:12pt Georgia;color:#f2f2f2;margin-top:60px;margin-bottom:-150px;clear:both;">
+            <div class="row" style="position:relative; background:#0B86C3; box-shadow:2px 2px 3px rgba(0,0,0,0.5);">
+                <div class="text-center" id="slogan" style="letter-space:2px;text-shadow:1px 1px 3px rgba(0,0,0,0.5);line-height:36px;font-size:46px">
                     Join us and start your projects here
                 </div>
             </div>
-            <div class="lookWrap" style="postion:relative;align:center;width:100%;">
-                <div id="look" style="margin:auto;width:700px;">
 
-                    <div class="section" style="overflow:hidden;float:left;display:inline;width:180px;margin:0  15px 15px 0;font:10px verdana;line-height:1.6em;text-align:center;">
+            <div class="row">
+                    <div class="col-xs-12 col-sm-4 text-center" style="margin:0  15px 15px 0;font:10px verdana;line-height:1.6em">
                         <h3 style="font-weight:normal;font-size:12pt Georgia;text-transform:uppercase;color:#ABABAB;">About Us</h3>
                         <a href='/#!/about_page' style="color:#BEBEBE;text-decoration:none;dispaly:block;">About Website<br></a>
                         <a href='/#!/about_us' style="color:#BEBEBE;text-decoration:none;dispaly:block;">Our Team<br></a>
                     </div>
-
-                    <div class="section" style="overflow:hidden;float:left;display:inline;width:180px;margin:0  15px 15px 0;font:10px verdana;line-height:1.6em;text-align:center;">
+                    <div class="col-xs-12 col-sm-4 text-center" style="margin:0  15px 15px 0;font:10px verdana;line-height:1.6em">
                         <h3 style="font-weight:normal;font-size:12pt Georgia;text-transform:uppercase;color:#ABABAB;">Support</h3>
                         <a href='/#!/contact_us' style="color:#BEBEBE;text-decoration:none;dispaly:block;">Contact Us<br></a>
                         <a href='/#!/privacy_policy' style="color:#BEBEBE;text-decoration:none;dispaly:block;">Privacy Policy<br></a>
                         <a href='/#!/term_of_use' style="color:#BEBEBE;text-decoration:none;dispaly:block;">Term of Use</a>
                     </div>
-
-                    <div class="section" style="overflow:hidden;float:left;display:inline;width:180px;margin:0  15px 15px 0;font:10px verdana;line-height:1.6em;text-align:center;">
+                    <div class="col-xs-12 col-sm-3 text-center" style="display:inline;margin:0  15px 15px 0;font:10px verdana;line-height:1.6em">
                         <h3 style="font-weight:normal;font-size:12pt Georgia;text-transform:uppercase;color:#ABABAB;">Follow Us</h3>
                         <a href="https://www.facebook.com" style="color:#BEBEBE;text-decoration:none;dispaly:block;"><img src="modules/core/img/element/facebook_footer.png" style="width:15px;height:15px;"></img>&nbsp;Facebook<br></a>
                         <a href="https://www.twitter.com" style="color:#BEBEBE;text-decoration:none;dispaly:block;"><img src="modules/core/img/element/twitter_footer.png" style="width:15px;height:15px;"></img>&nbsp;Twitter<br></a>
                         <a href="https://plus.google.com" style="color:#BEBEBE;text-decoration:none;dispaly:block;"><img src="modules/core/img/element/google_footer.gif" style="width:15px;height:15px;"></img>&nbsp;Google<br></a>
                         <a href="https://www.linkedin.com" style="color:#BEBEBE;text-decoration:none;dispaly:block;"><img src="modules/core/img/element/linkedin_footer.png" style="width:15px;height:15px;"></img>&nbsp;Linkedin<br></a>
                     </div>
-
-                    <div class="section" style="overflow:hidden;float:left;display:inline;width:180px;margin:0  15px 15px 0;font:10px verdana;line-height:1.6em;text-align:center;">
-               
-                        <a href='/#!/project_page' style="color:red;text-decoration:none;dispaly:block;">Project Page(remove later)<br></a>
-                        <a href='/#!/search_result_list' style="color:red;text-decoration:none;dispaly:block;">Search Result List(remove later)<br></a>
-                        <a href='/#!/chat_page' style="color:red;text-decoration:none;dispaly:block;">Chat Page(if we have chat feature)<br></a>
-                        <a href='/#!/search_bar' style="color:red;text-decoration:none;dispaly:block;">Styled Search Bar<br></a>
-                    </div>
-                </div>
             </div>
-            <div class="legality" style="margin:auto;width:700px;text-align:center;clear:both;font:10px verdana;line-height:2em;padding:40px 0 0 0;color:#ABABAB;">
+
+            <div style="overflow:hidden;float:left;display:inline;margin:0  15px 15px 0;font:10px verdana;line-height:1.6em;text-align:center;">
+
+                <a href='/#!/project_page' style="color:red;text-decoration:none;dispaly:block;">Project Page(remove later)<br></a>
+                <a href='/#!/search_result_list' style="color:red;text-decoration:none;dispaly:block;">Search Result List(remove later)<br></a>
+                <a href='/#!/chat_page' style="color:red;text-decoration:none;dispaly:block;">Chat Page(if we have chat feature)<br></a>
+                <a href='/#!/search_bar' style="color:red;text-decoration:none;dispaly:block;">Styled Search Bar<br></a>
+            </div>
+
+            <div class="text-center text-muted" style="margin:auto;clear:both;font:10px verdana;line-height:2em;padding:40px 0 0 0;color:#ABABAB;">
                 &copy;Copyright 2015 &nbsp; Kick-Start-Up Team. All rights reserved.
             </div>
         </div>
-	</section>
+        </div>
 
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
