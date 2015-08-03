@@ -43,6 +43,14 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 		state('search_result_list', {
 			url: '/search_result_list',
 			templateUrl: 'modules/core/views/search_result_list.html'
+		}).
+		state('chat_page', {
+			url: '/chat_page',
+			templateUrl: 'modules/core/views/chat_page.html'
+		}).
+		state('search_bar', {
+			url: '/search_bar',
+			templateUrl: 'modules/core/views/search_bar.html'
 		})
 	}
 ]);
