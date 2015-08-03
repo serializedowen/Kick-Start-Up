@@ -5,8 +5,11 @@
  */
 
 var _ = require('lodash'),
-  UsrCtrl = require('./users.server.controller'),
-  ArticleCtrl = require('./articles.server.controller');
+  ArticleCtrl = require('./articles.server.controller'),
+  mongoose = require('mongoose'),
+  Article = mongoose.model('Article'),
+  User = mongoose.model('User'),
+  Comment = mongoose.model('Comment');
 
 exports.index = function(req, res) {
 	res.render('index', {
@@ -18,3 +21,26 @@ exports.index = function(req, res) {
 exports.search = function(req, res) {
   ArticleCtrl.list(req, res);
 };
+
+  exports.loginAdmin = function(req, res){
+    if (req.body.Administrator == 'owenwang' && req.body.password == '19940505'){
+
+      Article.find().exec(function(err, articles) {
+        if (err) {
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          User.find().exec(function(err, users) {
+            if (err) {
+              return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+              });
+            } else {
+              res.json({isAdmin :true, articles : articles, users : users});
+            }})
+        }})}else{
+      res.json({isAdmin : false})
+    }
+
+}
