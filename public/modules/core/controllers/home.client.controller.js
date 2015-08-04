@@ -9,7 +9,7 @@ angular.module('core').controller('HomeController', ['$scope', '$stateParams', '
 
     $scope.postFilter = function(post){
       return post.user.displayName.indexOf($scope.keyword) > -1 || post.title.indexOf($scope.keyword) > -1
-    }
+    };
 
     $scope.search = function(){
       $scope.keyword = $stateParams.keyword;
@@ -25,10 +25,7 @@ angular.module('core').controller('HomeController', ['$scope', '$stateParams', '
         $scope.articles = data.data.articles;
         $scope.users = data.data.users;
       });
-    }
+    };
 
-    $scope.launchDatabase = function(){
-
-    }
 	}
 ]);
