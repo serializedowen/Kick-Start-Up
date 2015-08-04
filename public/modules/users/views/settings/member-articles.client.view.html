@@ -1,0 +1,63 @@
+<section id="content-wrapper" style="margin-top:10px;" ng-controller="SettingsController" >
+  <div id="content-header" ng-init="currentUser = currentUser()">
+    <h2 class="content-title" style="font-weight:-100;margin-top:20px;margin-left:20px;font-size: 36px;line-height: 1.3;text-shadow:1px 1px 1px rgba(0,0,0,0.5);color: #646b75;">All Projects Members with <a href="/#!/users/{{currentId()}}">{{currentUser.displayName}} </a> on Kick-Start-Up: </h2>
+  </div>
+
+  <div id="search list">
+
+    <div id="projecthead" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:block;background-color:#0B86C3;border-bottom:1px solid #006186;">
+        <span style="font-family:'Open Sans', 'Helvetica Neue', Arial, Helvetica, Sans-Serif;font-size:10px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">
+        </span>
+    </div>
+
+    <div id="collapsible-list-01" style="border: 0;padding: 0;" >
+      <table class="table table-hover">
+        <thead id="title">
+            <tr>
+                <th></th>
+                <th style="cursor: pointer" ng-click="order = '-title'">Project Name</th>
+                <th style="cursor: pointer" ng-click="order = '-user'">Owner</th>
+                <th style="cursor: pointer" ng-click="order = '-created'">Posted date</th>
+                <th style="cursor: pointer" ng-click="order = '-endDate'">End date</th>
+                <th style="cursor: pointer" ng-click="order = '-applicants'">Applicants</th>
+                <th style="cursor: pointer" ng-click="order = '-thumbsUp'">Thumbs Up</th>
+            </tr>
+        </thead>
+    <div ng-init="result1 = findAllMember()">
+        <tbody ng-repeat="proj in result1 ">
+            <tr>
+                <td>
+                    <span class="project-status status-archived"></span>
+                </td>
+                <td>
+                    <a href="/#!/articles/{{proj._id}}" title="">{{proj.title}}</a>
+                </td>
+                <td>
+                    <a href="/#!/users/{{proj.user._id}}">{{proj.user.displayName}}</a>
+                </td>
+                <td>
+                    <div class="project-date">{{proj.created | date:'mediumDate'}}</div>
+                </td>
+                <td>
+                    <div class="project-date">{{proj.endDate | date:'mediumDate'}}</div>
+                </td>
+                <td>
+                    {{proj.applicants.length}}
+                </td>
+                <td>
+                    {{proj.thumbsUp}}
+                </td>
+            </tr>
+
+        </tbody>
+    </div>
+      </table>
+    </div>
+
+    <div id="projectend" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:block;background-color:#0B86C3;border-bottom:8px solid #0B86C3;margin-top:-20px;">
+        <span style="font-family:'Open Sans', 'Helvetica Neue', Arial, Helvetica, Sans-Serif;font-size:15px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">
+        </span>
+    </div>
+
+  </div>
+</section>
