@@ -114,7 +114,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$stateParam
     };
     $scope.findApplied = function(){
     	$http.get('/article/person/'+$stateParams.userId).success(function(data){
-        	$scope.result = data;
+        	$scope.result2 = data;
       	});
     };
     $scope.findAllMember = function(){
