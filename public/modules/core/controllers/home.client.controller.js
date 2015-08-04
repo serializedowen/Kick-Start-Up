@@ -25,13 +25,10 @@ angular.module('core').controller('HomeController', ['$scope', '$stateParams', '
         $scope.articles = data.data.articles;
         $scope.users = data.data.users;
       });
-      //  .success(function(data){
-      //  console.log('suc');
-      //  $scope.isAdmin = true;
-      //}).error(function(err){
-      //  console.log('err');
-      //  $scope.error.message = 'screw you! wrong credentials.'
-      //})
+    }
+
+    $scope.launchDatabase = function(){
+
     }
 	}
 ]);

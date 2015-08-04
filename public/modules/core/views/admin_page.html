@@ -22,19 +22,91 @@
 
 
     <div ng-show="isAdmin">
+        <button class="btn btn-danger" ng-click="launchDatabase()">Go to DataBase</button>
+        {{}}
         <div class="row">
-            <div class="col-xs-12 col-sm-4">
-                <div ng-repeat="article in articles">
-                    {{article.title}}
-                </div>
+            <div class="col-xs-12">
+                <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th style="cursor: pointer" ng-click="order = '-title'">Project Name</th>
+                    <th style="cursor: pointer" ng-click="order = '-user'">Owner</th>
+                    <th style="cursor: pointer" ng-click="order = '-created'">Posted date</th>
+                    <th style="cursor: pointer" ng-click="order = '-endDate'">End date</th>
+                    <th style="cursor: pointer" ng-click="order = '-applicants'">Applicants</th>
+                    <th style="cursor: pointer" ng-click="order = '-thumbsUp'">Thumbs Up</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="proj in articles">
+                    <tr>
+                        <td>
+                            <span class="project-status status-archived"></span>
+                        </td>
+                        <td>
+                            <a href="/#!/articles/{{proj._id}}" title="">{{proj.title}}</a>
+                        </td>
+                        <td>
+                            <a href="/#!/users/{{proj.user._id}}">{{proj.user.displayName}}</a>
+                        </td>
+                        <td>
+                            <div class="project-date">{{proj.created | date:'mediumDate'}}</div>
+                        </td>
+                        <td>
+                            <div class="project-date">{{proj.endDate | date:'mediumDate'}}</div>
+                        </td>
+                        <td>
+                            {{proj.applicants.length}}
+                        </td>
+                        <td>
+                            {{proj.thumbsUp}}
+                        </td>
+                        <td>
+                            Edit
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
             </div>
-            <div class="col-xs-12 col-sm-4">
-                <div ng-repeat="user in users">
-                    {{user.displayName}}
-                </div>
+            <div class="col-xs-12">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th style="cursor: pointer" ng-click="order = '-title'">First Name</th>
+                        <th style="cursor: pointer" ng-click="order = '-user'">Last Name</th>
+                        <th style="cursor: pointer" ng-click="order = '-created'">Email</th>
+                        <th style="cursor: pointer" ng-click="order = '-endDate'">Background</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat="user in users">
+                    <tr>
+                        <td>
+                            <span class="project-status status-archived"></span>
+                        </td>
+                        <td>
+                            <a href="/#!/articles/{{user._id}}" title="">{{user.firstName}}</a>
+                        </td>
+                        <td>
+                            <a href="/#!/users/{{user._id}}">{{user.lastName}}</a>
+                        </td>
+                        <td>
+                            <div class="project-date">{{user.email}}</div>
+                        </td>
+                        <td>
+                            <div class="project-date">{{user.background}}</div>
+                        </td>
+                        <td>
+                            Edit
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <div class="col-xs-12" col-sm-4>
+            <div class="col-xs-12">
                 <div ng-repeat="comment in comments">
 
                 </div>

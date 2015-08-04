@@ -23,7 +23,7 @@ exports.search = function(req, res) {
 };
 
   exports.loginAdmin = function(req, res){
-    if (req.body.Administrator == 'owenwang' && req.body.password == '19940505'){
+    if (req.body.Administrator == 'admin' && req.body.password == 'admin'){
 
       Article.find().exec(function(err, articles) {
         if (err) {
